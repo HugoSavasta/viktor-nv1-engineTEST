@@ -2,7 +2,7 @@
 
 import DAW from "./daw";
 import Synth from "./instrument";
-import PatchLibrary from "../src/patches/library";
+import PatchLibrary from "./library";
 
 const _DAW = DAW;
 export { _DAW as DAW };
