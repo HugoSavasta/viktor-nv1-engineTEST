@@ -22,6 +22,7 @@
   },
   "homepage": "https://github.com/nicroto/viktor-nv1-engine",
   "dependencies": {
+    "store": "^2.0.12",
     "viktor-nv1-settings-convertor": "^1.0.1"
   },
   "devDependencies": {
