@@ -2,7 +2,9 @@
 
 import { transposeParam } from "./settingsConvertor.js";
 import { TUNA_COMPRESSOR_DEFAULT_SETTINGS, TUNA_DELAY_DEFAULT_SETTINGS, TUNA_REVERB_DEFAULT_SETTINGS, ENGINE_VERSION, DEFAULT_COMPRESSOR_SETTINGS, DEFAULT_DELAY_SETTINGS, DEFAULT_REVERB_SETTINGS, DEFAULT_MASTER_VOLUME_SETTINGS, DEFAULT_PITCH_SETTINGS, DEFAULT_MODULATION_SETTINGS } from "./const.js";
-import patchLoader from "./patch-loader.js";
+// import patchLoader object
+import { patchLoader } from "./patch-loader.js";
+
 import MIDIController from "./midi.js";
 import Tuna from "./tuna.js";
 
@@ -91,7 +93,7 @@ DAW.prototype = {
 		var self = this,
 			instruments = self.instruments;
 
-		patch = load( patch );
+		patch = patchLoader.load( patch );
 
 		if ( patch ) {
 			// first apply instrument patches (pitch, modulation etc. should override)

@@ -25,9 +25,10 @@ const CURRENT_ENGINE_VERSION = "ENGINE_VERSION_" + CONST.ENGINE_VERSION;
 
 var patchLoader = {
 
-	load: ( patch ) => {
-		var self = this,
-			currentVersion = self._getVersion( patch ),
+	load: function( patch ) {
+		var self = this;
+		console.log(this);
+		var currentVersion = self._getVersion( patch ),
 			alteredPatch = JSON.parse( JSON.stringify( patch ) ); // clone
 
 		switch( currentVersion ) {
@@ -256,4 +257,5 @@ var patchLoader = {
 
 };
 
-export default patchLoader;
+
+export  { patchLoader} ;

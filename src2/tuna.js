@@ -285,7 +285,7 @@ Tuna.prototype.Cabinet = function (properties) {
     }
     this.input = userContext.createGain();
     this.activateNode = userContext.createGain();
-    this.convolver = this.newConvolver(properties.impulsePath || "../impulses/impulse_guitar.wav");
+    this.convolver = this.newConvolver(properties.impulsePath || "./impulses/impulse_guitar.wav");
     this.makeupNode = userContext.createGain();
     this.output = userContext.createGain();
 
@@ -652,7 +652,7 @@ Tuna.prototype.Convolver = function (properties) {
     this.dryLevel = setOrDefault(properties.dryLevel, this.defaults.dryLevel.value);
     this.wetLevel = setOrDefault(properties.wetLevel, this.defaults.wetLevel.value);
     this.highCut = properties.highCut || this.defaults.highCut.value;
-    this.buffer = properties.impulse || "../impulses/ir_rev_short.wav";
+    this.buffer = properties.impulse || "./impulses/ir_rev_short.wav";
     this.lowCut = properties.lowCut || this.defaults.lowCut.value;
     this.level = setOrDefault(properties.level, this.defaults.level.value);
     this.filterHigh.type = "lowpass";
@@ -755,7 +755,7 @@ Tuna.prototype.Convolver.prototype = Object.create(Super, {
                 console.log("Tuna.Convolver.setBuffer: Missing impulse path!");
                 return;
             }
-            xhr.open("GET", impulse, true);
+            xhr.open("GET", "./"+impulse, true);
             xhr.responseType = "arraybuffer";
             xhr.onreadystatechange = function () {
                 if(xhr.readyState === 4) {
