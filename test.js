@@ -36,12 +36,18 @@ function init() {
         dawEngine,
         patchLibrary;
 
-    NV1Engine.create(audioContext, store, function (dEngine, pLibrary) {
+    /*NV1Engine.create(audioContext, store, function (dEngine, pLibrary) {
 
         dawEngine = dEngine;
         patchLibrary = pLibrary;
 
     });
+    */
+
+    var result = NV1Engine.create( audioContext, store );
+
+		dawEngine = result.dawEngine;
+		patchLibrary = result.patchLibrary;
 
     // Add a button in the HTML, when clicked, resume audioContext,
     // and play a MIDI note
@@ -54,7 +60,20 @@ function init() {
             // chercher les écouteurs du clavier piano et faire pareil en envoyant un son à l'engine
             // TODO !!!
             console.log("PLAYING NOTE !!!!!!ç")
+            var isNoteOn = true;
+            var noteNumber = 60;
+
+            var msg = produceMidiMessage(
+				isNoteOn ? 144 : 128,
+				noteNumber,
+				100
+			);
+            dawEngine.externalMidiMessage(msg);
         });
     });
 
 }
+
+var produceMidiMessage = function( firstByte, secondByte, thirdByte ) {
+    return { data: [ firstByte, secondByte, thirdByte ] };
+};
