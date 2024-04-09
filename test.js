@@ -54,6 +54,10 @@ function init() {
     var button = document.createElement("button");
     button.innerHTML = "Play";
     document.body.appendChild(button);
+
+    // Build preset menu
+    buildPresetMenu(patchLibrary, dawEngine);
+
     button.addEventListener("click", function () {
         audioContext.resume().then(() => {
             // Regarder dans le code du synthé pour voir comment jouer une note
@@ -69,6 +73,9 @@ function init() {
 				100
 			);
             dawEngine.externalMidiMessage(msg);
+
+           
+            
         });
     });
 
@@ -77,3 +84,27 @@ function init() {
 var produceMidiMessage = function( firstByte, secondByte, thirdByte ) {
     return { data: [ firstByte, secondByte, thirdByte ] };
 };
+
+function buildPresetMenu( patchLibrary, dawEngine ) {
+    var select = document.createElement( "select" ),
+        option,
+        patch,
+        i;
+
+        let names = patchLibrary.getDefaultNames()
+        // build select options
+        for ( i = 0; i < names.length; i++ ) {
+            option = document.createElement( "option" );
+            option.value = names[i];
+            option.text = names[i];
+            select.appendChild( option );
+        }
+
+    select.addEventListener( "change", function() {
+        var selectedItem = patchLibrary.getPatch( select.value );
+
+        dawEngine.loadPatch( selectedItem.patch );
+    });
+
+    document.body.appendChild( select );
+}
