@@ -576,7 +576,9 @@ Tuna.prototype.Compressor.prototype = Object.create(Super, {
             return this.compNode.threshold;
         },
         set: function (value) {
-            this.compNode.threshold.value = value;
+            //this.compNode.threshold.value = value;
+            this.compNode.threshold.setValueAtTime(value, userContext.currentTime);
+
             if(this._automakeup) this.makeupGain = this.computeMakeup();
         }
     },
@@ -586,7 +588,9 @@ Tuna.prototype.Compressor.prototype = Object.create(Super, {
             return this.compNode.ratio;
         },
         set: function (value) {
-            this.compNode.ratio.value = value;
+            //this.compNode.ratio.value = value;
+            this.compNode.ratio.setValueAtTime(value, userContext.currentTime);
+
             if(this._automakeup) this.makeupGain = this.computeMakeup();
         }
     },
@@ -596,7 +600,8 @@ Tuna.prototype.Compressor.prototype = Object.create(Super, {
             return this.compNode.knee;
         },
         set: function (value) {
-            this.compNode.knee.value = value;
+            //this.compNode.knee.value = value;
+            this.compNode.knee.setValueAtTime(value, userContext.currentTime);
             if(this._automakeup) this.makeupGain = this.computeMakeup();
         }
     },
@@ -606,7 +611,8 @@ Tuna.prototype.Compressor.prototype = Object.create(Super, {
             return this.compNode.attack;
         },
         set: function (value) {
-            this.compNode.attack.value = value / 1000;
+            //this.compNode.attack.value = value / 1000;
+            this.compNode.attack.setValueAtTime(value / 1000, userContext.currentTime);
         }
     },
     release: {
@@ -616,6 +622,7 @@ Tuna.prototype.Compressor.prototype = Object.create(Super, {
         },
         set: function (value) {
             //this.compNode.release = value / 1000;
+            this.compNode.release.setValueAtTime(value / 1000, userContext.currentTime);
         }
     },
     makeupGain: {

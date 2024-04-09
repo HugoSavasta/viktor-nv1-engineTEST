@@ -27,7 +27,7 @@ var patchLoader = {
 
 	load: function( patch ) {
 		var self = this;
-		console.log(this);
+		//console.log(this);
 		var currentVersion = self._getVersion( patch ),
 			alteredPatch = JSON.parse( JSON.stringify( patch ) ); // clone
 
