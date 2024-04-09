@@ -43,4 +43,18 @@ function init() {
 
     });
 
+    // Add a button in the HTML, when clicked, resume audioContext,
+    // and play a MIDI note
+    var button = document.createElement("button");
+    button.innerHTML = "Play";
+    document.body.appendChild(button);
+    button.addEventListener("click", function () {
+        audioContext.resume().then(() => {
+            // Regarder dans le code du synthé pour voir comment jouer une note
+            // chercher les écouteurs du clavier piano et faire pareil en envoyant un son à l'engine
+            // TODO !!!
+            console.log("PLAYING NOTE !!!!!!ç")
+        });
+    });
+
 }
