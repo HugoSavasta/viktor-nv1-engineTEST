@@ -73,9 +73,6 @@ function init() {
 				100
 			);
             dawEngine.externalMidiMessage(msg);
-
-           
-            
         });
     });
 
