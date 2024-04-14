@@ -10,7 +10,7 @@
 // 	ENGINE_VERSION_6 = 6,
 // 	CURRENT_ENGINE_VERSION = "ENGINE_VERSION_" + CONST.ENGINE_VERSION;
 
-import * as settingsConvertor  from "./settingsConvertor.js";
+import * as settingsConvertor  from "../../settingsConvertor.js";
 import * as CONST from "./const.js" ;
 const ENGINE_VERSION_1 = 1;
 const ENGINE_VERSION_2 = 2;

@@ -1,12 +1,12 @@
 'use strict';
 
-import { transposeParam } from "./settingsConvertor.js";
-import { TUNA_COMPRESSOR_DEFAULT_SETTINGS, TUNA_DELAY_DEFAULT_SETTINGS, TUNA_REVERB_DEFAULT_SETTINGS, ENGINE_VERSION, DEFAULT_COMPRESSOR_SETTINGS, DEFAULT_DELAY_SETTINGS, DEFAULT_REVERB_SETTINGS, DEFAULT_MASTER_VOLUME_SETTINGS, DEFAULT_PITCH_SETTINGS, DEFAULT_MODULATION_SETTINGS } from "./const.js";
+import { transposeParam } from "../settingsConvertor.js";
+import { TUNA_COMPRESSOR_DEFAULT_SETTINGS, TUNA_DELAY_DEFAULT_SETTINGS, TUNA_REVERB_DEFAULT_SETTINGS, ENGINE_VERSION, DEFAULT_COMPRESSOR_SETTINGS, DEFAULT_DELAY_SETTINGS, DEFAULT_REVERB_SETTINGS, DEFAULT_MASTER_VOLUME_SETTINGS, DEFAULT_PITCH_SETTINGS, DEFAULT_MODULATION_SETTINGS } from "./engine/const.js";
 // import patchLoader object
-import { patchLoader } from "./patch-loader.js";
+import { patchLoader } from "./engine/patch-loader.js";
 
-import MIDIController from "./midi.js";
-import Tuna from "./tuna.js";
+import MIDIController from "./engine/midi.js";
+import Tuna from "./non-npm/tuna/tuna.js";
 
 let load = patchLoader.load;
 let prepareForSerialization = patchLoader.prepareForSerialization;

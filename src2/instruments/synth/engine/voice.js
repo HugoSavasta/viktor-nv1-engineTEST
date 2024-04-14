@@ -2,7 +2,7 @@
 
 'use strict';
 
-import { transposeValue, transposeParam } from "./settingsConvertor.js";
+import { transposeValue, transposeParam } from "../../../settingsConvertor.js";
 import { CUSTOM_WAVEFORMS, FILTER_FREQUENCY_UPPER_BOUND, FILTER_FREQUENCY_LOWER_BOUND, LFO_DEFAULT_RATE, LFO_DEFAULT_FORM, LFO_DEFAULT_FREQUENCY_CENTER, LFO_DEFAULT_FREQUENCY_RANGE, MODULATION_LFO_FREQUENCY_RANGE, FAKE_ZERO, OSC_WAVEFORM } from "./conste.js";
 import OscillatorBank from "./oscillator-bank.js";
 import WaveformSource from "./waveform-source.js";

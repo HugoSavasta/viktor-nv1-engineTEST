@@ -1,9 +1,9 @@
 'use strict';
 
-import DAW from "./daw.js";
-import Synth from "./instrument.js";
-import PatchLibrary from "./library.js";
-import * as defaultPatches from "./default.js";
+import DAW from "./daw/daw.js";
+import Synth from "./instruments/synth/instrument.js";
+import PatchLibrary from "./patches/library.js";
+import * as defaultPatches from "./patches/default.js";
 
 const _DAW = DAW;
 export { _DAW as DAW };
