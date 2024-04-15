@@ -93,6 +93,8 @@ function init() {
    });
 
    keyboard.keyDown = function (note, frequency) { 
+    // if audioContext is suspended, resume it
+    audioContext.resume().then(() => {
         console.log("KEY DOWN")
         console.log(note)
         console.log(frequency)
@@ -104,7 +106,7 @@ function init() {
             100
         );
         dawEngine.externalMidiMessage(msg);
-
+    });
    }
 
     keyboard.keyUp = function (note, frequency) { 
