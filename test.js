@@ -49,14 +49,17 @@ function init() {
 		dawEngine = result.dawEngine;
 		patchLibrary = result.patchLibrary;
 
+    
+
+    // Build preset menu
+    buildPresetMenu(patchLibrary, dawEngine);
+
+    /* just for testing....
     // Add a button in the HTML, when clicked, resume audioContext,
     // and play a MIDI note
     var button = document.createElement("button");
     button.innerHTML = "Play";
-    document.body.appendChild(button);
-
-    // Build preset menu
-    buildPresetMenu(patchLibrary, dawEngine);
+    document.body.appendChild(button);``
 
     button.addEventListener("click", function () {
         audioContext.resume().then(() => {
@@ -75,7 +78,53 @@ function init() {
             dawEngine.externalMidiMessage(msg);
         });
     });
+    */
 
+    // add a piano keyboard
+    var keyboard = new QwertyHancock({
+        id: 'pianoKeyboard',
+        width: 1000,
+        height: 100,
+        octaves: 7,
+        startNote: 'A3',
+        whiteNotesColour: 'white',
+        blackNotesColour: 'black',
+        hoverColour: '#f3e939'
+   });
+
+   keyboard.keyDown = function (note, frequency) { 
+        console.log("KEY DOWN")
+        console.log(note)
+        console.log(frequency)
+        console.log("MIDI Note number : " + freqToMidi(frequency))
+        
+        var msg = produceMidiMessage(
+            144,
+            freqToMidi(frequency),
+            100
+        );
+        dawEngine.externalMidiMessage(msg);
+
+   }
+
+    keyboard.keyUp = function (note, frequency) { 
+        console.log("KEY UP")
+        console.log(note)
+        console.log(frequency);
+        console.log("MIDI Note number : " + freqToMidi(frequency))
+        var msg = produceMidiMessage(
+            128,
+            freqToMidi(frequency),
+            100
+        );
+        dawEngine.externalMidiMessage(msg);
+
+    }
+
+}
+
+function freqToMidi( freq ) {
+    return Math.round( 69 + 12 * Math.log2( freq / 440 ) );
 }
 
 var produceMidiMessage = function( firstByte, secondByte, thirdByte ) {
@@ -103,5 +152,5 @@ function buildPresetMenu( patchLibrary, dawEngine ) {
         dawEngine.loadPatch( selectedItem.patch );
     });
 
-    document.body.appendChild( select );
+    document.querySelector('#viktorPresetMenu').append( select );
 }
