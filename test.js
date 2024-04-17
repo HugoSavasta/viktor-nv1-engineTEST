@@ -8,23 +8,23 @@ class Store {
         localStorage.setItem(key, value);
     }
 
-// Get current user
-get(user) {
-    return localStorage.getItem(user);
-}
+    // Get current user
+    get(user) {
+        return localStorage.getItem(user);
+    }
 
-// Remove current user
-remove(user) {
-     localStorage.removeItem(user);
-}
+    // Remove current user
+    remove(user) {
+        localStorage.removeItem(user);
+    }
 
-// Clear all keys
-clearAll(){
-    localStorage.clear();
-}
+    // Clear all keys
+    clearAll() {
+        localStorage.clear();
+    }
 
-// Loop over all stored values
-each(callback) {}
+    // Loop over all stored values
+    each(callback) { }
 }
 
 let store = new Store();
@@ -44,12 +44,12 @@ function init() {
     });
     */
 
-    var result = NV1Engine.create( audioContext, store );
+    var result = NV1Engine.create(audioContext, store);
 
-		dawEngine = result.dawEngine;
-		patchLibrary = result.patchLibrary;
+    dawEngine = result.dawEngine;
+    patchLibrary = result.patchLibrary;
 
-    
+
 
     // Build preset menu
     buildPresetMenu(patchLibrary, dawEngine);
@@ -71,10 +71,10 @@ function init() {
             var noteNumber = 60;
 
             var msg = produceMidiMessage(
-				isNoteOn ? 144 : 128,
-				noteNumber,
-				100
-			);
+                isNoteOn ? 144 : 128,
+                noteNumber,
+                100
+            );
             dawEngine.externalMidiMessage(msg);
         });
     });
@@ -90,26 +90,26 @@ function init() {
         whiteNotesColour: 'white',
         blackNotesColour: 'black',
         hoverColour: '#f3e939'
-   });
-
-   keyboard.keyDown = function (note, frequency) { 
-    // if audioContext is suspended, resume it
-    audioContext.resume().then(() => {
-        console.log("KEY DOWN")
-        console.log(note)
-        console.log(frequency)
-        console.log("MIDI Note number : " + freqToMidi(frequency))
-        
-        var msg = produceMidiMessage(
-            144,
-            freqToMidi(frequency),
-            100
-        );
-        dawEngine.externalMidiMessage(msg);
     });
-   }
 
-    keyboard.keyUp = function (note, frequency) { 
+    keyboard.keyDown = function (note, frequency) {
+        // if audioContext is suspended, resume it
+        audioContext.resume().then(() => {
+            console.log("KEY DOWN")
+            console.log(note)
+            console.log(frequency)
+            console.log("MIDI Note number : " + freqToMidi(frequency))
+
+            var msg = produceMidiMessage(
+                144,
+                freqToMidi(frequency),
+                100
+            );
+            dawEngine.externalMidiMessage(msg);
+        });
+    }
+
+    keyboard.keyUp = function (note, frequency) {
         console.log("KEY UP")
         console.log(note)
         console.log(frequency);
@@ -119,40 +119,41 @@ function init() {
             freqToMidi(frequency),
             100
         );
+        console.log(msg)
         dawEngine.externalMidiMessage(msg);
 
     }
 
 }
 
-function freqToMidi( freq ) {
-    return Math.round( 69 + 12 * Math.log2( freq / 440 ) );
+function freqToMidi(freq) {
+    return Math.round(69 + 12 * Math.log2(freq / 440));
 }
 
-var produceMidiMessage = function( firstByte, secondByte, thirdByte ) {
-    return { data: [ firstByte, secondByte, thirdByte ] };
+var produceMidiMessage = function (firstByte, secondByte, thirdByte) {
+    return { data: [firstByte, secondByte, thirdByte] };
 };
 
-function buildPresetMenu( patchLibrary, dawEngine ) {
-    var select = document.createElement( "select" ),
+function buildPresetMenu(patchLibrary, dawEngine) {
+    var select = document.createElement("select"),
         option,
         patch,
         i;
 
-        let names = patchLibrary.getDefaultNames()
-        // build select options
-        for ( i = 0; i < names.length; i++ ) {
-            option = document.createElement( "option" );
-            option.value = names[i];
-            option.text = names[i];
-            select.appendChild( option );
-        }
+    let names = patchLibrary.getDefaultNames()
+    // build select options
+    for (i = 0; i < names.length; i++) {
+        option = document.createElement("option");
+        option.value = names[i];
+        option.text = names[i];
+        select.appendChild(option);
+    }
 
-    select.addEventListener( "change", function() {
-        var selectedItem = patchLibrary.getPatch( select.value );
+    select.addEventListener("change", function () {
+        var selectedItem = patchLibrary.getPatch(select.value);
 
-        dawEngine.loadPatch( selectedItem.patch );
+        dawEngine.loadPatch(selectedItem.patch);
     });
 
-    document.querySelector('#viktorPresetMenu').append( select );
+    document.querySelector('#viktorPresetMenu').append(select);
 }
