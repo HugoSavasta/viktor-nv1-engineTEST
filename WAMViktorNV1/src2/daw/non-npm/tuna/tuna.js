@@ -15,6 +15,13 @@
     OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 */
 //Originally written by Alessandro Saccoia, Chris Coniglio and Oskar Eriksson
+const getBaseURL = () => {
+	const base = new URL('.', import.meta.url);
+	return `${base}`;
+};
+
+console.log("TUNA JS : baseURL = " + getBaseURL());
+
 var userContext, userInstance, Tuna = function (context) {
         if (! window.AudioContext) {
     window.AudioContext = window.webkitAudioContext;
@@ -762,7 +769,7 @@ Tuna.prototype.Convolver.prototype = Object.create(Super, {
                 console.log("Tuna.Convolver.setBuffer: Missing impulse path!");
                 return;
             }
-            xhr.open("GET", "./"+impulse, true);
+            xhr.open("GET", getBaseURL()+impulse, true);
             xhr.responseType = "arraybuffer";
             xhr.onreadystatechange = function () {
                 if(xhr.readyState === 4) {
