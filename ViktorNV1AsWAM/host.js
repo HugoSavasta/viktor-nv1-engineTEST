@@ -44,26 +44,6 @@ const mountPlugin = (domNode) => {
 	// connect keyboard to the synth so that synth listens to MIDI events
     keyboardInstance.audioNode.connectEvents(viktorInstance.instanceId);
 	
-	// Add a button to test the synth
-	/*
-	document.getElementById("note").addEventListener("click", () => {
-		// if audio context is suspended, resume it
-		audioContext.resume().then(() => {
-
-			let wam = window.viktorInstance;
-
-			wam.audioNode.scheduleEvents({ type: 'wam-midi', time: wam.audioNode.context.currentTime, data: { bytes: new Uint8Array([0x90, 74, 100]) } });
-			wam.audioNode.scheduleEvents({
-				type: 'wam-midi',
-				time: wam.audioNode.context.currentTime + 0.25,
-				data: {
-					bytes: new Uint8Array([0x80, 74, 100])
-				}
-			});
-		});
-	});
-	*/
-
 	async function loadWam(wamUri) {
 		const { default: WAM } = await import(wamUri);
 
