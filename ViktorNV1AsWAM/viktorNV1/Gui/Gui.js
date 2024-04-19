@@ -32,7 +32,7 @@ let style = `
 	color: #eee;
 	background: linear-gradient(to bottom, rgba(150, 150, 150, 0.69) 5%, rgba(230, 230, 230, 0) 100%);
   }
-  #viktorPresetMenu option {
+  #viktorPresetMenu select {
 	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 	font-weight: 100;
 	font-size: 30px;
@@ -252,7 +252,7 @@ let style = `
   
   .keyboard {
 	position:absolute;
-	top:400px;
+	top:495px;
 	left:195px;
   }
 
