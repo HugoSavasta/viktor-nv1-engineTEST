@@ -6,7 +6,7 @@ export function transposeValue(value, originalRange, newRange) {
 	return newRange[0] + ratioToRange * newRangeLength;
 }
 export function transposeParam(param, newRange) {
-	var self = this, newValue = self.transposeValue(param.value, param.range, newRange);
+	var self = this, newValue = transposeValue(param.value, param.range, newRange);
 
 	return {
 		value: newValue,

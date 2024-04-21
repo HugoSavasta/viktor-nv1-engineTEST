@@ -651,7 +651,7 @@ webaudio-slider{
 					if (this._height == 0) this._height = 128;
 				}
 				this._knobwidth = this.getAttr("knobwidth", opt.sliderKnobwidth);
-				this._knobheight = this.getAttr("knbheight", opt.sliderKnobheight);
+				this._knobheight = this.getAttr("knobheight", opt.sliderKnobheight);
 				this._ditchlength = this.getAttr("ditchlength", opt.sliderDitchlength);
 				this._colors = this.getAttr("colors", opt.sliderColors);
 				this.outline = this.getAttr("outline", opt.outline);
