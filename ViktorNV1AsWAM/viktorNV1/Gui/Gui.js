@@ -737,43 +737,43 @@ let template = `
 		</div>
 		<div class="row">
 			<div class="knob-with-label">
-				<webaudio-knob src="images/0-100-knob.png"
-					value="{{compressor.threshold.value}}" min="{{compressor.threshold.range[ 0 ]}}" max="{{compressor.threshold.range[ 1 ]}}"
+				<webaudio-knob src="images/0-100-knob.png" id="knob-compressor-threshold"
+					value="-60" min="-60" max="0"
 					step="0.5"
 					sprites="44" width="45" height="45"></webaudio-knob>
 				<h6>Threshold</h6>
 			</div>
 			<div class="knob-with-label">
-				<webaudio-knob src="images/0-100-knob.png"
-					value="{{compressor.ratio.value}}" min="{{compressor.ratio.range[ 0 ]}}" max="{{compressor.ratio.range[ 1 ]}}"
+				<webaudio-knob src="images/0-100-knob.png" id="knob-compressor-ratio"
+					value="1" min="1" max="20"
 					step="0.1"
 					sprites="44" width="45" height="45"></webaudio-knob>
 				<h6>Ratio</h6>
 			</div>
 			<div class="knob-with-label">
-				<webaudio-knob src="images/0-100-knob.png"
-					value="{{compressor.knee.value}}" min="{{compressor.knee.range[ 0 ]}}" max="{{compressor.knee.range[ 1 ]}}"
+				<webaudio-knob src="images/0-100-knob.png" id="knob-compressor-knee"
+					value="0" min="0" max="20"
 					step="0.1"
 					sprites="44" width="45" height="45"></webaudio-knob>
 				<h6>Knee</h6>
 			</div>
 			<div class="knob-with-label">
-				<webaudio-knob src="images/0-100-knob.png"
-					value="{{compressor.attack.value}}" min="{{compressor.attack.range[ 0 ]}}" max="{{compressor.attack.range[ 1 ]}}"
+				<webaudio-knob src="images/0-100-knob.png" id="knob-compressor-attack"
+					value="0.0" min="0.0" max="1000.0"
 					step="0.1"
 					sprites="44" width="45" height="45"></webaudio-knob>
 				<h6>Attack</h6>
 			</div>
 			<div class="knob-with-label">
-				<webaudio-knob src="images/0-100-knob.png"
-					value="{{compressor.release.value}}" min="{{compressor.release.range[ 0 ]}}" max="{{compressor.release.range[ 1 ]}}"
+				<webaudio-knob src="images/0-100-knob.png" id="knob-compressor-release"
+					value="0" min="0" max="1000"
 					step="1"
 					sprites="44" width="45" height="45"></webaudio-knob>
 				<h6>Release</h6>
 			</div>
 			<div class="knob-with-label">
-				<webaudio-knob src="images/0-100-knob.png"
-					value="{{compressor.makeupGain.value}}" min="{{compressor.makeupGain.range[ 0 ]}}" max="{{compressor.makeupGain.range[ 1 ]}}"
+				<webaudio-knob src="images/0-100-knob.png" id="knob-compressor-makeupGain"
+					value="0.0" min="0.0" max="10.0"
 					step="0.1"
 					sprites="44" width="45" height="45"></webaudio-knob>
 				<h6>Gain</h6>
@@ -796,8 +796,8 @@ let template = `
 		<h4>Reverb</h4>
 		<div class="row">
 			<div class="knob-with-label">
-				<webaudio-knob src="images/0-100-knob.png"
-					value="{{reverb.level.value}}" min="{{reverb.level.range[ 0 ]}}" max="{{reverb.level.range[ 1 ]}}"
+				<webaudio-knob src="images/0-100-knob.png" id="knob-reverb-level"
+					value="0" min="0" max="100"
 					step="1"
 					sprites="44" width="45" height="45"></webaudio-knob>
 				<h6>Level</h6>
@@ -809,29 +809,29 @@ let template = `
 		<h4>Delay</h4>
 		<div class="row">
 			<div class="knob-with-label">
-				<webaudio-knob src="images/0-100-knob.png"
-					value="{{delay.time.value}}" min="{{delay.time.range[ 0 ]}}" max="{{delay.time.range[ 1 ]}}"
+				<webaudio-knob src="images/0-100-knob.png" id="knob-delay-time"
+					value="0" min="0" max="100"
 					step="1"
 					sprites="44" width="45" height="45"></webaudio-knob>
 				<h6>Time</h6>
 			</div>
 			<div class="knob-with-label">
-				<webaudio-knob src="images/0-100-knob.png"
-					value="{{delay.feedback.value}}" min="{{delay.feedback.range[ 0 ]}}" max="{{delay.feedback.range[ 1 ]}}"
+				<webaudio-knob src="images/0-100-knob.png" id="knob-delay-feedback"
+					value="0" min="0" max="100"
 					step="1"
 					sprites="44" width="45" height="45"></webaudio-knob>
 				<h6>Feed</h6>
 			</div>
 			<div class="knob-with-label">
-				<webaudio-knob src="images/0-100-knob.png"
-					value="{{delay.dry.value}}" min="{{delay.dry.range[ 0 ]}}" max="{{delay.dry.range[ 1 ]}}"
+				<webaudio-knob src="images/0-100-knob.png" id="knob-delay-dry"
+					value="0" min="0" max="100"
 					step="1"
 					sprites="44" width="45" height="45"></webaudio-knob>
 				<h6>Dry</h6>
 			</div>
 			<div class="knob-with-label">
-				<webaudio-knob src="images/0-100-knob.png"
-					value="{{delay.wet.value}}" min="{{delay.wet.range[ 0 ]}}" max="{{delay.wet.range[ 1 ]}}"
+				<webaudio-knob src="images/0-100-knob.png" id="knob-delay-wet"
+					value="0" min="0" max="100"
 					step="1"
 					sprites="44" width="45" height="45"></webaudio-knob>
 				<h6>Wet</h6>
@@ -1327,6 +1327,125 @@ export default class ViktorNV1HTMLElement extends HTMLElement {
 		};
 	}
 
+	getCompressorValuesFromUI() {
+		const synth = this.getSynth();
+		const compressor = synth.compressorSettings;
+		const threshold = {
+			value: parseInt(this.root.getElementById('knob-compressor-threshold').value),
+			range: [-60, 0]
+		}
+		const ratio = {
+			value: parseInt(this.root.getElementById('knob-compressor-ratio').value),
+			range: [1, 20]
+		}
+		const knee = {
+			value: parseInt(this.root.getElementById('knob-compressor-knee').value),
+			range: [0, 20]
+		}
+		const attack = {
+			value: parseInt(this.root.getElementById('knob-compressor-attack').value),
+			range: [0, 1000]
+		}
+		const release = {
+			value: parseInt(this.root.getElementById('knob-compressor-release').value),
+			range: [0, 1000]
+		}
+		const makeupGain = {
+			value: parseInt(this.root.getElementById('knob-compressor-makeupGain').value),
+			range: [0, 10]
+		}
+
+		return {
+			threshold,
+			ratio,
+			knee,
+			attack,
+			release,
+			makeupGain
+		}
+	}
+
+	setCompressorValues() {
+		let synth = this.getSynth();
+		// get all knob values as an object
+		let uiSettings = this.getCompressorValuesFromUI();
+
+		synth.compressorSettings = {
+			threshold: uiSettings.threshold,
+			ratio: uiSettings.ratio,
+
+			knee: uiSettings.knee,
+			attack: uiSettings.attack,
+
+			release: uiSettings.release,
+			makeupGain: uiSettings.makeupGain
+		};
+	}
+
+
+	getReverbValuesFromUI() {
+		const synth = this.getSynth();
+		const reverb = synth.reverbSettings;
+		const level = {
+			value: parseInt(this.root.getElementById('knob-reverb-level').value),
+			range: [0, 100]
+		}
+
+		return {
+			level
+		}
+	}
+
+	setReverbValues() {
+		let synth = this.getSynth();
+		// get all knob values as an object
+		let uiSettings = this.getReverbValuesFromUI();
+
+		synth.reverbSettings = {
+			level: uiSettings.level
+		};
+	}
+
+	getDelayValuesFromUI() {
+		const synth = this.getSynth();
+		const delay = synth.delaySettings;
+		const time = {
+			value: parseInt(this.root.getElementById('knob-delay-time').value),
+			range: [0, 100]
+		}
+		const feedback = {
+			value: parseInt(this.root.getElementById('knob-delay-feedback').value),
+			range: [0, 100]
+		}
+		const dry = {
+			value: parseInt(this.root.getElementById('knob-delay-dry').value),
+			range: [0, 100]
+		}
+		const wet = {
+			value: parseInt(this.root.getElementById('knob-delay-wet').value),
+			range: [0, 100]
+		}
+
+		return {
+			time,
+			feedback,
+			dry,
+			wet
+		}
+	}
+
+	setDelayValues() {
+		let synth = this.getSynth();
+		// get all knob values as an object
+		let uiSettings = this.getDelayValuesFromUI();
+
+		synth.delaySettings = {
+			time: uiSettings.time,
+			feedback: uiSettings.feedback,
+			dry: uiSettings.dry,
+			wet: uiSettings.wet
+		};
+	}
 
 
 
@@ -1484,7 +1603,59 @@ export default class ViktorNV1HTMLElement extends HTMLElement {
 		});
 
 
+		// COMPRESSOR
+		this.root.getElementById('compressor-switch').addEventListener('input', (e) => {
+			//console.log("On change le switch du compresseur + val = " + e.target.value);
+			this.setCompressorValues();
+		});
+		this.root.getElementById('knob-compressor-threshold').addEventListener('input', (e) => {
+			//console.log("On change la valeur du threshold du compresseur + val = " + e.target.value);
+			this.setCompressorValues();
+		});
+		this.root.getElementById('knob-compressor-ratio').addEventListener('input', (e) => {
+			//console.log("On change la valeur du ratio du compresseur + val = " + e.target.value);
+			this.setCompressorValues();
+		});
+		this.root.getElementById('knob-compressor-knee').addEventListener('input', (e) => {
+			//console.log("On change la valeur du knee du compresseur + val = " + e.target.value);
+			this.setCompressorValues();
+		});
+		this.root.getElementById('knob-compressor-attack').addEventListener('input', (e) => {
+			//console.log("On change la valeur de l'attack du compresseur + val = " + e.target.value);
+			this.setCompressorValues();
+		});
+		this.root.getElementById('knob-compressor-release').addEventListener('input', (e) => {
+			//console.log("On change la valeur du release du compresseur + val = " + e.target.value);
+			this.setCompressorValues();
+		});
+		this.root.getElementById('knob-compressor-makeupGain').addEventListener('input', (e) => {
+			//console.log("On change la valeur du makeupGain du compresseur + val = " + e.target.value);
+			this.setCompressorValues();
+		});
 
+		// REVERB
+		this.root.getElementById('knob-reverb-level').addEventListener('input', (e) => {
+			//console.log("On change le level du reverb + val = " + e.target.value);
+			this.setReverbValues();
+		});
+
+		// DELAY
+		this.root.getElementById('knob-delay-time').addEventListener('input', (e) => {
+			//console.log("On change le time du delay + val = " + e.target.value);
+			this.setDelayValues();
+		});
+		this.root.getElementById('knob-delay-feedback').addEventListener('input', (e) => {
+			//console.log("On change le feedback du delay + val = " + e.target.value);
+			this.setDelayValues();
+		});
+		this.root.getElementById('knob-delay-dry').addEventListener('input', (e) => {
+			//console.log("On change le dry du delay + val = " + e.target.value);
+			this.setDelayValues();
+		});
+		this.root.getElementById('knob-delay-wet').addEventListener('input', (e) => {
+			//console.log("On change le wet du delay + val = " + e.target.value);
+			this.setDelayValues();
+		});
 
 		// Master Volume
 		this.root.getElementById('masterVolume').addEventListener('input', (e) => {
