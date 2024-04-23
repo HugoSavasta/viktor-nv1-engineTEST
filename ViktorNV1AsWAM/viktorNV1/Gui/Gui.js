@@ -508,45 +508,45 @@ let template = `
 		<div class="oscillator-column">
 			<h5>Oscillator 1</h5>
 			<div class="oscillator-row-1">
-				<webaudio-knob src="images/6-range-knob.png"
-					value="{{oscillators.osc1.range.value}}" min="1" max="{{oscillators.osc1.range.range[ 1 ]}}" step="1" diameter="240" sprites="5" width="60" height="60">
+				<webaudio-knob src="images/6-range-knob.png" id="knob-osc1-range"
+					value="2" min="1" max="6" step="1" diameter="240" sprites="5" width="60" height="60">
 				</webaudio-knob>
 				<div class="oscillator-filler">
 				</div>
-				<webaudio-knob src="images/range-knob.png"
-					value="{{oscillators.osc1.waveform.value}}" min="{{oscillators.osc1.waveform.range[ 0 ]}}" max="{{oscillators.osc1.waveform.range[ 1 ]}}" step="1" diameter="240" sprites="5" width="60" height="60">
+				<webaudio-knob src="images/range-knob.png" id="knob-osc1-waveform"
+					value="0" min="0" max="5" step="1" diameter="240" sprites="5" width="60" height="60">
 				</webaudio-knob>
 			</div>
-			<h5 id="oscillator2h5">Oscillator 2</h5>
+			<h5>Oscillator 2</h5>
 			<div class="oscillator-row-2">
-				<webaudio-knob src="images/6-range-knob.png"
-					value="{{oscillators.osc2.range.value}}" min="1" max="{{oscillators.osc2.range.range[ 1 ]}}" step="1" diameter="240" sprites="5" width="60" height="60">
+				<webaudio-knob src="images/6-range-knob.png" id="knob-osc2-range"
+					value="1" min="1" max="6" step="1" diameter="240" sprites="5" width="60" height="60">
 				</webaudio-knob>
-				<webaudio-knob src="images/0-100-knob.png"
-					value="{{oscillators.osc2.fineDetune.value}}" min="{{oscillators.osc2.fineDetune.range[ 0 ]}}" max="{{oscillators.osc2.fineDetune.range[ 1 ]}}" step="1" diameter="120" sprites="44" width="60" height="60">
+				<webaudio-knob src="images/0-100-knob.png" id="knob-osc2-fine-detune"
+					value="200" min="1" max="1600" step="1" diameter="120" sprites="44" width="60" height="60">
 				</webaudio-knob>
-				<webaudio-knob src="images/range-knob.png"
-					value="{{oscillators.osc2.waveform.value}}" min="{{oscillators.osc2.waveform.range[ 0 ]}}" max="{{oscillators.osc2.waveform.range[ 1 ]}}" step="1" diameter="240" sprites="5" width="60" height="60">
+				<webaudio-knob src="images/range-knob.png" id="knob-osc2-waveform"
+					value="2" min="0" max="5" step="1" diameter="240" sprites="5" width="60" height="60">
 				</webaudio-knob>
 			</div>
 
-			<h5 id="oscillator3h5">Oscillator 3</h5>
+			<h5>Oscillator 3</h5>
 			<div class="oscillator-row-3">
 				<div class="knob-with-label">
-					<webaudio-knob src="images/lfo-knob.png"
-						value="{{oscillators.osc3.range.value}}" min="{{oscillators.osc3.range.range[ 0 ]}}" max="{{oscillators.osc3.range.range[ 1 ]}}" step="1" diameter="240" sprites="6" width="60" height="60">
+					<webaudio-knob src="images/lfo-knob.png" id="knob-osc3-range"
+						value="0" min="0" max="6" step="1" diameter="240" sprites="6" width="60" height="60">
 					</webaudio-knob>
 					<h5>Range</h5>
 				</div>
 				<div class="knob-with-label">
-					<webaudio-knob src="images/0-100-knob.png"
-						value="{{oscillators.osc3.fineDetune.value}}" min="{{oscillators.osc3.fineDetune.range[ 0 ]}}" max="{{oscillators.osc3.fineDetune.range[ 1 ]}}" step="1" diameter="120" sprites="44" width="60" height="60">
+					<webaudio-knob src="images/0-100-knob.png" id="knob-osc3-fine-detune"
+						value="0" min="0" max="1600" step="1" diameter="120" sprites="44" width="60" height="60">
 					</webaudio-knob>
 					<h5>Detune</h5>
 				</div>
 				<div class="knob-with-label">
-					<webaudio-knob src="images/range-knob.png"
-						value="{{oscillators.osc3.waveform.value}}" min="{{oscillators.osc3.waveform.range[ 0 ]}}" max="{{oscillators.osc3.waveform.range[ 1 ]}}" step="1" diameter="240" sprites="5" width="60" height="60">
+					<webaudio-knob src="images/range-knob.png" id="knob-osc3-waveform"
+						value="0" min="0" max="5" step="1" diameter="240" sprites="5" width="60" height="60">
 					</webaudio-knob>
 					<h5>Form</h5>
 				</div>
@@ -557,29 +557,29 @@ let template = `
 
 	<div class="mixer">
 		<div class="mixer-column">
-			<div class="mixer-row-1">
-				<webaudio-switch src="images/switch.png" width="40" height="40"
+			<div class="mixer-row-1"> 
+				<webaudio-switch src="images/switch.png" width="40" height="40" id="mixer-switch-1"
 					value="{{mixer.volume1.enabled.value}}">
 				</webaudio-switch>
 				<div class="mixer-filler">
 				</div>
-				<webaudio-knob src="images/0-100-knob.png"
-					value="{{mixer.volume1.level.value}}" min="{{mixer.volume1.level.range[ 0 ]}}" max="{{mixer.volume1.level.range[ 1 ]}}" step="1" diameter="120" sprites="44" width="60" height="60">
+				<webaudio-knob src="images/0-100-knob.png" id="knob-mixer-volume-1"
+					value="0" min="0" max="100" step="1" diameter="120" sprites="44" width="60" height="60">
 				</webaudio-knob>
   			</div>
 			<div class="mixer-row-2">
-			  	<webaudio-switch src="images/switch.png" width="40" height="40"
+			  	<webaudio-switch src="images/switch.png" width="40" height="40" id="mixer-switch-2"
 					value="{{mixer.volume2.enabled.value}}">
 				</webaudio-switch>
 				<div class="mixer-filler">
 				</div>
-				<webaudio-knob src="images/0-100-knob.png"
-					value="{{mixer.volume2.level.value}}" min="{{mixer.volume2.level.range[ 0 ]}}" max="{{mixer.volume2.level.range[ 1 ]}}" step="1" diameter="120" sprites="44" width="60" height="60">
+				<webaudio-knob src="images/0-100-knob.png" id="knob-mixer-volume-2"
+					value="0" min="0" max="100" step="1" diameter="120" sprites="44" width="60" height="60">
 				</webaudio-knob>
 			</div>
 			<div class="mixer-row-3">
-				<div class="knob-with-label" id="mixer-knob-label-on-off">
-					<webaudio-switch id="mixer-on-off-switch" src="images/switch.png" width="40" height="40"
+				<div class="knob-with-label" id="mixer-knob-label-on-off"> 
+					<webaudio-switch id="mixer-on-off-switch" src="images/switch.png" width="40" height="40" id="mixer-switch-3"
 						value="{{mixer.volume3.enabled.value}}">
 					</webaudio-switch>
 					<div class="mixer-filler-2"></div>
@@ -588,8 +588,8 @@ let template = `
 				<div class="mixer-filler">
 				</div>
 				<div class="knob-with-label">
-					<webaudio-knob src="images/0-100-knob.png"
-						value="{{mixer.volume3.level.value}}" min="{{mixer.volume3.level.range[ 0 ]}}" max="{{mixer.volume3.level.range[ 1 ]}}" step="1" diameter="120" sprites="44" width="60" height="60">
+					<webaudio-knob src="images/0-100-knob.png" id="knob-mixer-volume-3"
+						value="0" min="0" max="100" step="1" diameter="120" sprites="44" width="60" height="60">
 					</webaudio-knob>
 					<h5>Volume</h5>
   				</div>
@@ -600,19 +600,19 @@ let template = `
 
 	<div class="noise">
 		<div class="noise-row-1">
-			<webaudio-switch src="images/switch.png" width="40" height="40"
+			<webaudio-switch src="images/switch.png" width="40" height="40" id="noise-switch"
 				value="{{noise.enabled.value}}">
 			</webaudio-switch>
 		</div>
 		<div class="noise-row-2">
-			<webaudio-knob src="images/0-100-knob.png"
-				value="{{noise.level.value}}" min="{{noise.level.range[ 0 ]}}" max="{{noise.level.range[ 1 ]}}" step="1" diameter="120" sprites="44" width="60" height="60">
+			<webaudio-knob src="images/0-100-knob.png" id="knob-noise-level"
+				value="0" min="0" max="100" step="1" diameter="120" sprites="44" width="60" height="60">
 			</webaudio-knob>
 		</div>
 		<div class="noise-row-3">
 			<webaudio-slider direction="horz" value="2"
 				min="0" max="2" step="1"
-				src="images/noise-slider-base.png" knobsrc="images/slider-knob.png"
+				src="images/noise-slider-base.png" knobsrc="images/slider-knob.png" id="knob-noise-type"
 				height="45" width="90" ditchlength="40" knobwidth="20" knobheight="20">
 			</webaudio-slider>
   		</div>
@@ -622,23 +622,24 @@ let template = `
 	<div class="envelopes">
 		<h5>Primary</h5>
 		<div class="envelopes-row-1">	
-			<webaudio-slider direction="vert" value="{{envs.primary.attack.value}}"
-				min="{{envs.primary.attack.range[ 0 ]}}" max="{{envs.primary.attack.range[ 1 ]}}" step="1"
+			<webaudio-slider direction="vert" id="env-primary-attack"
+				value="0" 
+				min="0" max="100" step="1"
 				src="images/0-100-slider-base.png" knobsrc="images/slider-knob.png"
 				height="90" width="45" ditchlength="80" knobwidth="20" knobheight="20">
 			</webaudio-slider>
-			<webaudio-slider direction="vert"
-				value="{{envs.primary.decay.value}}" min="{{envs.primary.decay.range[ 0 ]}}" max="{{envs.primary.decay.range[ 1 ]}}" step="1"
+			<webaudio-slider direction="vert" id="env-primary-decay"
+				value="{0" min="0" max="100" step="1"
 				src="images/0-100-slider-base.png" knobsrc="images/slider-knob.png"
 				height="90" width="45" ditchlength="80" knobwidth="20" knobheight="20">
 			</webaudio-slider>
-			<webaudio-slider direction="vert"
-				value="{{envs.primary.sustain.value}}" min="{{envs.primary.sustain.range[ 0 ]}}" max="{{envs.primary.sustain.range[ 1 ]}}" step="1"
+			<webaudio-slider direction="vert" id="env-primary-sustain"
+				value="100" min="0" max="100" step="1"
 				src="images/0-100-slider-base.png" knobsrc="images/slider-knob.png"
 				height="90" width="45" ditchlength="80" knobwidth="20" knobheight="20">
 			</webaudio-slider>
-			<webaudio-slider direction="vert"
-				value="{{envs.primary.release.value}}" min="{{envs.primary.release.range[ 0 ]}}" max="{{envs.primary.release.range[ 1 ]}}" step="1"
+			<webaudio-slider direction="vert" id="env-primary-release"
+				value="100" min="0" max="100" step="1"
 				src="images/0-100-slider-base.png" knobsrc="images/slider-knob.png"
 				height="90" width="45" ditchlength="80" knobwidth="20" knobheight="20">
 			</webaudio-slider>
@@ -646,32 +647,32 @@ let template = `
 		<h5>Filter</h5>
 		<div class="envelopes-row-2">
   			<div class="slider-with-label">
-				<webaudio-slider direction="vert"
-					value="{{envs.filter.attack.value}}" min="{{envs.filter.attack.range[ 0 ]}}" max="{{envs.filter.attack.range[ 1 ]}}" step="1"
+				<webaudio-slider direction="vert" id="env-filter-attack"
+					value="100" min="0" max="100" step="1"
 					src="images/0-100-slider-base.png" knobsrc="images/slider-knob.png"
 					height="90" width="45" ditchlength="80" knobwidth="20" knobheight="20">
 				</webaudio-slider>
 				<h5>Attack</h5>
 			</div>
 			<div class="slider-with-label">
-				<webaudio-slider direction="vert"
-					value="{{envs.filter.decay.value}}" min="{{envs.filter.decay.range[ 0 ]}}" max="{{envs.filter.decay.range[ 1 ]}}" step="1"
+				<webaudio-slider direction="vert" id="env-filter-decay"
+					value="100" min="0" max="100" step="1"
 					src="images/0-100-slider-base.png" knobsrc="images/slider-knob.png"
 					height="90" width="45" ditchlength="80" knobwidth="20" knobheight="20">
 				</webaudio-slider>
 				<h5>Decay</h5>
 			</div>
 			<div class="slider-with-label">
-				<webaudio-slider direction="vert"
-					value="{{envs.filter.sustain.value}}" min="{{envs.filter.sustain.range[ 0 ]}}" max="{{envs.filter.sustain.range[ 1 ]}}" step="1"
+				<webaudio-slider direction="vert" id="env-filter-sustain"
+					value="100" min="0" max="100" step="1"
 					src="images/0-100-slider-base.png" knobsrc="images/slider-knob.png"
 					height="90" width="45" ditchlength="80" knobwidth="20" knobheight="20">
 				</webaudio-slider>
 				<h5>Sustain</h5>
 			</div>
 			<div class="slider-with-label">
-				<webaudio-slider direction="vert"
-					value="{{envs.filter.release.value}}" min="{{envs.filter.release.range[ 0 ]}}" max="{{envs.filter.release.range[ 1 ]}}" step="1"
+				<webaudio-slider direction="vert" id="env-filter-release"
+					value="100" min="0" max="100" step="1"
 					src="images/0-100-slider-base.png" knobsrc="images/slider-knob.png"
 					height="90" width="45" ditchlength="80" knobwidth="20" knobheight="20">
 				</webaudio-slider>
@@ -684,20 +685,20 @@ let template = `
 	<div class="filter">
 		<div class="knob-with-label">
 			<h5 id="filter-cutoff-label">Cutoff</h5>
-			<webaudio-knob src="images/0-100-knob.png"
-				value="{{filter.cutoff.value}}" min="{{filter.cutoff.range[ 0 ]}}" max="{{filter.cutoff.range[ 1 ]}}" step="1" diameter="120" sprites="44" width="60" height="60">
+			<webaudio-knob src="images/0-100-knob.png" id="knob-filter-cutoff"
+				value="0" min="0" max="500" step="1" diameter="120" sprites="44" width="60" height="60">
 			</webaudio-knob>
 		</div>
 		<div class="knob-with-label">
 			<h5>Emphasis</h5>
-			<webaudio-knob src="images/0-100-knob.png"
-				value="{{filter.emphasis.value}}" min="{{filter.emphasis.range[ 0 ]}}" max="{{filter.emphasis.range[ 1 ]}}" step="1" diameter="120" sprites="44" width="60" height="60">
+			<webaudio-knob src="images/0-100-knob.png" id="knob-filter-emphasis"
+				value="0" min="0" max="100" step="1" diameter="120" sprites="44" width="60" height="60">
 			</webaudio-knob>
 		</div>
 		<div class="knob-with-label">
 			<h5>Simple/Env</h5>
-			<webaudio-knob src="images/0-100-knob.png"
-				value="{{filter.envAmount.value}}" min="{{filter.envAmount.range[ 0 ]}}" max="{{filter.envAmount.range[ 1 ]}}" step="1" diameter="120" sprites="44" width="60" height="60">
+			<webaudio-knob src="images/0-100-knob.png" id="knob-filter-env-amount"
+				value="0" min="0" max="100" step="1" diameter="120" sprites="44" width="60" height="60">
 			</webaudio-knob>
 		</div>
 		<h4>LP Filter</h4>
@@ -706,20 +707,20 @@ let template = `
 	<div class="lfo">
 		<div class="knob-with-label">
 			<h5 id="lfo-form-label">Form</h5>
-			<webaudio-knob src="images/range-knob.png"
-				value="{{lfo.waveform.value}}" min="{{lfo.waveform.range[ 0 ]}}" max="{{lfo.waveform.range[ 1 ]}}" step="1" diameter="240" sprites="5" width="60" height="60">
+			<webaudio-knob src="images/range-knob.png" id="knob-lfo-waveform"
+				value="0" min="0" max="5" step="1" diameter="240" sprites="5" width="60" height="60">
 			</webaudio-knob>
 		</div>
 		<div class="knob-with-label">
 			<h5>Rate</h5>
-			<webaudio-knob src="images/0-100-knob.png"
-				value="{{lfo.rate.value}}" min="{{lfo.rate.range[ 0 ]}}" max="{{lfo.rate.range[ 1 ]}}" step="1" diameter="120" sprites="44" width="60" height="60">
+			<webaudio-knob src="images/0-100-knob.png"  id="knob-lfo-rate"
+				value="1" min="1" max="25" step="1" diameter="120" sprites="44" width="60" height="60">
 			</webaudio-knob>
 		</div>
 		<div class="knob-with-label">
 			<h5>Clean/LFO</h5>
-			<webaudio-knob src="images/0-100-knob.png"
-				value="{{lfo.amount.value}}" min="{{lfo.amount.range[ 0 ]}}" max="{{lfo.amount.range[ 1 ]}}" step="1" diameter="120" sprites="44" width="60" height="60">
+			<webaudio-knob src="images/0-100-knob.png" id="knob-lfo-amount"
+				value="0" min="0" max="100" step="1" diameter="120" sprites="44" width="60" height="60">
 			</webaudio-knob>
 		</div>
 		<h4>LFO</h4>
@@ -728,8 +729,8 @@ let template = `
     <!-- ###### BOTTOM ROW #### -->
 	<div class="compressor">
 		<div class="row compressor-first-row">
-			<div class="on-off-switch no-padding">
-					<webaudio-switch src="images/switch.png" width="20" height="20"
+			<div class="on-off-switch no-padding"> 
+					<webaudio-switch src="images/switch.png" width="20" height="20" id="compressor-switch"
 						value="{{compressor.enabled.value}}"></webaudio-switch>
 			</div>
 			<h4>Compressor</h4>
@@ -1014,6 +1015,7 @@ export default class ViktorNV1HTMLElement extends HTMLElement {
 			rate
 		}
 	}
+
 	setModulationValues() {
 		// easier to compare to orinal viktor UI code
 		const synth = this.getSynth();
@@ -1030,22 +1032,320 @@ export default class ViktorNV1HTMLElement extends HTMLElement {
 		};
 	}
 
+	getOscillatorValuesFromUI() {
+		const synth = this.getSynth();
+		// OSC1
+		// osc1 range
+		const osc1Range = {
+			value: parseInt(this.root.getElementById('knob-osc1-range').value),
+			range: [1, 6]
+		}
+		let osc1RangeAdjusted = transposeParam(osc1Range, [-4, 2]);
+		// osc1 waveform
+		const osc1Waveform = parseInt(this.root.getElementById('knob-osc1-waveform').value);
+
+		// OSC2
+		// osc2 range
+		const osc2Range = {
+			value: parseInt(this.root.getElementById('knob-osc2-range').value),
+			range: [1, 6]
+		}
+		let osc2RangeAdjusted = transposeParam(osc2Range, [-4, 2]);
+
+		// osc2 waveform
+		const osc2Waveform = parseInt(this.root.getElementById('knob-osc2-waveform').value);
+		// osc2 fine detune
+		const osc2FineDetune = {
+			value: parseInt(this.root.getElementById('knob-osc2-fine-detune').value),
+			range: [1, 1600]
+		}
+		let osc2FineDetuneRangeAdjusted = transposeParam(osc2FineDetune, [-800, 800]);
+
+		// OSC3
+		// osc3 range
+		const osc3Range = {
+			value: parseInt(this.root.getElementById('knob-osc3-range').value),
+			range: [0, 6]
+		}
+
+		let osc3RangeAdjusted = transposeParam(osc3Range, [-3, 3]);
+
+		return {
+			osc1: {
+				value: osc1RangeAdjusted,
+				waveform: osc1Waveform
+			},
+			osc2: {
+				value: osc1RangeAdjusted,
+				fineDetune: osc2FineDetuneRangeAdjusted,
+				waveform: osc1Waveform
+			},
+			osc3: {
+				value: osc3RangeAdjusted,
+				fineDetune: osc2FineDetuneRangeAdjusted,
+				waveform: osc1Waveform
+			}
+
+		}
+	}
+
+	setOscillatorValues() {
+		let synth = this.getSynth();
+		// get all knob values as an object
+		let uiSettings = this.getOscillatorValuesFromUI();
+
+		synth.oscillatorSettings = {
+			osc1: {
+				range: uiSettings.osc1.value,
+				fineDetune: synth.oscillatorSettings.osc1.fineDetune,
+				waveform: uiSettings.osc1.waveform
+			},
+			osc2: {
+				range: uiSettings.osc2.value,
+				fineDetune: uiSettings.osc2.fineDetune,
+				waveform: uiSettings.osc2.waveform
+			},
+			osc3: {
+				range: uiSettings.osc3.value,
+				fineDetune: uiSettings.osc3.fineDetune,
+				waveform: uiSettings.osc3.waveform
+			}
+		};
+	}
+
+	getMixerValuesFromUI() {
+		const synth = this.getSynth();
+		const mixer = synth.mixerSettings;
+		const volume1 = {
+			enabled: mixer.volume1.enabled,
+			level: {
+				value: parseInt(this.root.getElementById('knob-mixer-volume-1').value),
+				range: [0, 100]
+			}
+		};
+		const volume2 = {
+			enabled: mixer.volume2.enabled,
+			level: {
+				value: parseInt(this.root.getElementById('knob-mixer-volume-2').value),
+				range: [0, 100]
+			}
+		};
+		const volume3 = {
+			enabled: mixer.volume3.enabled,
+			level: {
+				value: parseInt(this.root.getElementById('knob-mixer-volume-3').value),
+				range: [0, 100]
+			}
+		};
+
+		return {
+			volume1,
+			volume2,
+			volume3
+		}
+	}
+
+	setMixerValues() {
+		let synth = this.getSynth();
+		// get all knob values as an object
+		let uiSettings = this.getMixerValuesFromUI();
+
+		synth.mixerSettings = {
+			volume1: uiSettings.volume1,
+			volume2: uiSettings.volume2,
+			volume3: uiSettings.volume3
+		};
+	}
+
+	getNoiseValuesFromUI() {
+		const synth = this.getSynth();
+		const noise = synth.noiseSettings;
+
+		const enabled = noise.enabled;
+		const level = {
+			value: parseInt(this.root.getElementById('knob-noise-level').value),
+			range: [0, 100]
+		}
+		const type = parseInt(this.root.getElementById('knob-noise-type').value);
+
+		return {
+			enabled,
+			level,
+			type
+		}
+	}
+
+	setNoiseValues() {
+		let synth = this.getSynth();
+		// get all knob values as an object
+		let uiSettings = this.getNoiseValuesFromUI();
+
+		synth.noiseSettings = {
+			enabled: synth.noiseSettings.enabled,
+			level: uiSettings.level,
+			type: uiSettings.type
+		};
+	}
+
+	getEnvelopeValuesFromUI() {
+		const synth = this.getSynth();
+		const settings = synth.envelopesSettings;
+		const primary = settings.primary;
+		const filter = settings.filter;
+		
+		const primaryAttack = {
+			value: parseInt(this.root.getElementById('env-primary-attack').value),
+			range: [0, 100]
+		}
+		const primaryDecay = {
+			value: parseInt(this.root.getElementById('env-primary-decay').value),
+			range: [0, 100]
+		}
+		const primarySustain = {
+			value: parseInt(this.root.getElementById('env-primary-sustain').value),
+			range: [0, 100]
+		}
+		const primaryRelease = {
+			value: parseInt(this.root.getElementById('env-primary-release').value),
+			range: [0, 100]
+		}
+
+		const filterAttack = {
+			value: parseInt(this.root.getElementById('env-filter-attack').value),
+			range: [0, 100]
+		}
+		const filterDecay = {
+			value: parseInt(this.root.getElementById('env-filter-decay').value),
+			range: [0, 100]
+		}
+		const filterSustain = {
+			value: parseInt(this.root.getElementById('env-filter-sustain').value),
+			range: [0, 100]
+		}
+		const filterRelease = {
+			value: parseInt(this.root.getElementById('env-filter-release').value),
+			range: [0, 100]
+		}
+
+		return {
+			primary: {
+				attack: primaryAttack,
+				decay: primaryDecay,
+				sustain: primarySustain,
+				release: primaryRelease
+			},
+			filter: {
+				attack: filterAttack,
+				decay: filterDecay,
+				sustain: filterSustain,
+				release: filterRelease
+			}
+		}
+	}
+
+	setEnvelopeValues() {
+		let synth = this.getSynth();
+		// get all knob values as an object
+		let uiSettings = this.getEnvelopeValuesFromUI();
+
+		synth.envelopes = {
+			primary: uiSettings.primary,
+			filter: uiSettings.filter
+		};
+	}
+
+
+	getFilterValuesFromUI() {
+		const synth = this.getSynth();
+		const filter = synth.filterSettings;
+		const cutoff = {
+			value: parseInt(this.root.getElementById('knob-filter-cutoff').value),
+			range: [0, 500]
+		}
+		const emphasis = {
+			value: parseInt(this.root.getElementById('knob-filter-emphasis').value),
+			range: [0, 100]
+		}
+		const envAmount = {
+			value: parseInt(this.root.getElementById('knob-filter-env-amount').value),
+			range: [0, 100]
+		}
+
+		return {
+			cutoff,
+			emphasis,
+			envAmount
+		}
+	}
+
+	setFilterValues() {
+		let synth = this.getSynth();
+		// get all knob values as an object
+		let uiSettings = this.getFilterValuesFromUI();
+
+		synth.filterSettings = {
+			cutoff: uiSettings.cutoff,
+			emphasis: uiSettings.emphasis,
+			envAmount: uiSettings.envAmount
+		};
+
+	}
+	
+
+	getLFOValuesFromUI() {
+		const synth = this.getSynth();
+		const lfo = synth.lfoSettings;
+		const waveform = {
+			value: parseInt(this.root.getElementById('knob-lfo-waveform').value),
+			range: [0, 5]
+		} 
+		const rate = {
+			value: parseInt(this.root.getElementById('knob-lfo-rate').value),
+			range: [0, 25]
+		}
+		const amount = {
+			value: parseInt(this.root.getElementById('knob-lfo-amount').value),
+			range: [0, 100]
+		}
+
+		return {
+			waveform,
+			rate,
+			amount
+		}
+	}
+
+	setLFOValues() {
+		let synth = this.getSynth();
+		// get all knob values as an object
+		let uiSettings = this.getLFOValuesFromUI();
+
+		synth.lfoSettings = {
+			waveform: uiSettings.waveform,
+			rate: uiSettings.rate,
+			amount: uiSettings.amount
+		};
+	}
+
+
+
+
 	async setKnobs() {
 		// Rangée du haut, colonne 1 POLYPHONY MODULATION
 		// Attention, dans tous les écouteurs on doit modifier l'objet "modulationSettings complet, pas une seule propriété à la fois"
 		this.root.getElementById('knob-modulation-waveform').addEventListener('input', (e) => {
-			console.log("On change la forme de la waveform val = " + e.target.value);
+			//console.log("On change la forme de la waveform val = " + e.target.value);
 
 			this.setModulationValues();
 		});	
 		
 		this.root.getElementById('knob-modulation-glide').addEventListener('input', (e) => {
-			console.log("On change la vzaleur glide/portamento + val = " + e.target.value);
+			//console.log("On change la vzaleur glide/portamento + val = " + e.target.value);
 			this.setModulationValues();
 		});	
 		
 		this.root.getElementById('knob-polyphony-voices').addEventListener('input', (e) => {
-			console.log("On change le nombre max de voix de polyphonie = " + e.target.value);
+			//console.log("On change le nombre max de voix de polyphonie = " + e.target.value);
 
 			const synth = this.getSynth();
 			const settings = synth.polyphonySettings;
@@ -1054,6 +1354,137 @@ export default class ViktorNV1HTMLElement extends HTMLElement {
 					sustain: settings.sustain
 				};
 		});	
+
+		// Rangée du haut, oscillators
+		//osc1
+		this.root.getElementById('knob-osc1-range').addEventListener('input', (e) => {
+			this.setOscillatorValues();
+		});	
+		this.root.getElementById('knob-osc1-waveform').addEventListener('input', (e) => {
+			this.setOscillatorValues();
+		});	
+
+		//osc2
+		this.root.getElementById('knob-osc2-range').addEventListener('input', (e) => {
+			//console.log("On change la valeur de l'osc2 range + val = " + e.target.value);
+			this.setOscillatorValues();
+		});
+		this.root.getElementById('knob-osc2-fine-detune').addEventListener('input', (e) => {
+			//console.log("On change la valeur de l'osc2 fine detune + val = " + e.target.value);
+			this.setOscillatorValues();
+		});
+		this.root.getElementById('knob-osc2-waveform').addEventListener('input', (e) => {
+			//console.log("On change la valeur de l'osc2 waveform + val = " + e.target.value);
+			this.setOscillatorValues();
+		});
+
+		//osc3
+		this.root.getElementById('knob-osc3-range').addEventListener('input', (e) => {
+			//console.log("On change la valeur de l'osc3 range + val = " + e.target.value);
+			this.setOscillatorValues();
+		});
+		this.root.getElementById('knob-osc3-fine-detune').addEventListener('input', (e) => {
+			//console.log("On change la valeur de l'osc3 fine detune + val = " + e.target.value);
+			this.setOscillatorValues();
+		});
+		this.root.getElementById('knob-osc3-waveform').addEventListener('input', (e) => {
+			//console.log("On change la valeur de l'osc3 waveform + val = " + e.target.value);
+			this.setOscillatorValues();
+		});
+
+		// MIXER
+		this.root.getElementById('knob-mixer-volume-1').addEventListener('input', (e) => {
+			//console.log("On change le volume du mixer 1 + val = " + e.target.value);
+			this.setMixerValues();
+		});
+		this.root.getElementById('knob-mixer-volume-2').addEventListener('input', (e) => {
+			//console.log("On change le volume du mixer 2 + val = " + e.target.value);
+			this.setMixerValues();
+		});
+		this.root.getElementById('knob-mixer-volume-3').addEventListener('input', (e) => {
+			//console.log("On change le volume du mixer 3 + val = " + e.target.value);
+			this.setMixerValues();
+		});
+
+		// NOISE
+		this.root.getElementById('knob-noise-level').addEventListener('input', (e) => {
+			//console.log("On change le niveau de bruit + val = " + e.target.value);
+			this.setNoiseValues();
+		});
+		this.root.getElementById('knob-noise-type').addEventListener('input', (e) => {
+			//console.log("On change le type de bruit + val = " + e.target.value);
+			this.setNoiseValues();
+		});
+		this.root.getElementById('noise-switch').addEventListener('input', (e) => {
+			//console.log("On change le switch de bruit + val = " + e.target.value);
+			this.setNoiseValues();
+		});
+
+		// ENVELOPES
+		this.root.getElementById('env-primary-attack').addEventListener('input', (e) => {
+			//console.log("On change la valeur de l'attaque de l'enveloppe primaire + val = " + e.target.value);
+			this.setEnvelopeValues();
+		});
+		this.root.getElementById('env-primary-decay').addEventListener('input', (e) => {
+			//console.log("On change la valeur du decay de l'enveloppe primaire + val = " + e.target.value);
+			this.setEnvelopeValues();
+		});
+		this.root.getElementById('env-primary-sustain').addEventListener('input', (e) => {
+			//console.log("On change la valeur du sustain de l'enveloppe primaire + val = " + e.target.value);
+			this.setEnvelopeValues();
+		});
+		this.root.getElementById('env-primary-release').addEventListener('input', (e) => {
+			//console.log("On change la valeur du release de l'enveloppe primaire + val = " + e.target.value);
+			this.setEnvelopeValues();
+		});
+
+		this.root.getElementById('env-filter-attack').addEventListener('input', (e) => {
+			//console.log("On change la valeur de l'attaque de l'enveloppe de filtre + val = " + e.target.value);
+			this.setEnvelopeValues();
+		});
+		this.root.getElementById('env-filter-decay').addEventListener('input', (e) => {
+			//console.log("On change la valeur du decay de l'enveloppe de filtre + val = " + e.target.value);
+			this.setEnvelopeValues();
+		});
+		this.root.getElementById('env-filter-sustain').addEventListener('input', (e) => {
+			//console.log("On change la valeur du sustain de l'enveloppe de filtre + val = " + e.target.value);
+			this.setEnvelopeValues();
+		});
+		this.root.getElementById('env-filter-release').addEventListener('input', (e) => {
+			//console.log("On change la valeur du release de l'enveloppe de filtre + val = " + e.target.value);
+			this.setEnvelopeValues();
+		});
+
+		// FILTER
+		this.root.getElementById('knob-filter-cutoff').addEventListener('input', (e) => {
+			//console.log("On change la valeur du cutoff du filtre + val = " + e.target.value);
+			this.setFilterValues();
+		});
+		this.root.getElementById('knob-filter-emphasis').addEventListener('input', (e) => {
+			//console.log("On change la valeur de l'emphasis du filtre + val = " + e.target.value);
+			this.setFilterValues();
+		});
+		this.root.getElementById('knob-filter-env-amount').addEventListener('input', (e) => {
+			//console.log("On change la valeur de l'amount du filtre + val = " + e.target.value);
+			this.setFilterValues();
+		});
+
+		// LFO
+		this.root.getElementById('knob-lfo-waveform').addEventListener('input', (e) => {
+			//console.log("On change la valeur de la waveform du LFO + val = " + e.target.value);
+			this.setLFOValues();
+		});
+		this.root.getElementById('knob-lfo-rate').addEventListener('input', (e) => {
+			//console.log("On change la valeur du rate du LFO + val = " + e.target.value);
+			this.setLFOValues();
+		});
+		this.root.getElementById('knob-lfo-amount').addEventListener('input', (e) => {
+			//console.log("On change la valeur de l'amount du LFO + val = " + e.target.value);
+			this.setLFOValues();
+		});
+
+
+
 
 		// Master Volume
 		this.root.getElementById('masterVolume').addEventListener('input', (e) => {
