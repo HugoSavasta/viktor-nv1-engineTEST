@@ -1465,9 +1465,58 @@ export default class ViktorNV1HTMLElement extends HTMLElement {
 		};
 	}
 
-	getModulationWheelValuesFromUI(){
-		
+	getModulationWheelValuesFromUI() {
+		let dawEngine = this.getDawEngine();
+		const modulationWheel = dawEngine.modulationWheel;
+		const modulation = {
+			value: parseInt(this.root.getElementById('modulation-wheel').value),
+			range: [0, 128]
+		}
+
+		return {
+			modulation : transposeParam(modulation, [0, 15]) // voir buffa pk marche pas
+		}
 	}
+
+	setModulationWheelValues() {
+		let dawEngine = this.getDawEngine();
+		// get all knob values as an object
+		let uiSettings = this.getModulationWheelValuesFromUI();
+
+		dawEngine.modulationWheel = {
+			modulation: uiSettings.modulation
+		};
+
+		//console.dir(dawEngine.modulationWheel);
+
+	}
+
+	getPitchBendValuesFromUI() {
+		let dawEngine = this.getDawEngine();
+		const pitch = dawEngine.pitchBend;
+		const bend = {
+			value: parseInt(this.root.getElementById('pitch-bend-left').value),
+			range: [0, 128]
+		}
+
+		return {
+			bend : transposeParam(bend, [-200,200]) // buffa pk marche pas
+		}
+	}
+
+	setPitchBendValues() {
+		let dawEngine = this.getDawEngine();
+		// get all knob values as an object
+		let uiSettings = this.getPitchBendValuesFromUI();
+
+		dawEngine.pitchBend = {
+			bend: uiSettings.bend
+		};
+
+		//console.dir(dawEngine.pitchBend);
+
+	}
+
 
 
 	async setKnobs() {
@@ -1676,6 +1725,18 @@ export default class ViktorNV1HTMLElement extends HTMLElement {
 		this.root.getElementById('knob-delay-wet').addEventListener('input', (e) => {
 			//console.log("On change le wet du delay + val = " + e.target.value);
 			this.setDelayValues();
+		});
+
+		// MODULATION WHEEL
+		this.root.getElementById('modulation-wheel').addEventListener('input', (e) => {
+			//console.log("On change la valeur de la modulation wheel + val = " + e.target.value);
+			this.setModulationWheelValues();
+		});
+
+		// PITCH BEND
+		this.root.getElementById('pitch-bend-left').addEventListener('input', (e) => {
+			//console.log("On change la valeur du pitch bend + val = " + e.target.value);
+			this.setPitchBendValues();
 		});
 
 		// Master Volume
