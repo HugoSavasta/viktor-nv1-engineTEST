@@ -855,6 +855,7 @@ let template = `
 		</webaudio-knob>
 	</div>
 </div>
+
 <div class="keyboard">
 	<webaudio-keyboard id="piano-keyboard"
 		keys="39" min="61" width="539" height="162">
@@ -1155,6 +1156,7 @@ export default class ViktorNV1HTMLElement extends HTMLElement {
 			volume2: uiSettings.volume2,
 			volume3: uiSettings.volume3
 		};
+		console.dir(synth.mixerSettings);
 	}
 
 	getNoiseValuesFromUI() {
@@ -1395,7 +1397,7 @@ export default class ViktorNV1HTMLElement extends HTMLElement {
 			release: uiSettings.release,
 			makeupGain: uiSettings.makeupGain
 		};
-		console.dir(dawEngine.compressorSettings)
+		//console.dir affiche les objets
 	}
 
 
@@ -1463,6 +1465,9 @@ export default class ViktorNV1HTMLElement extends HTMLElement {
 		};
 	}
 
+	getModulationWheelValuesFromUI(){
+		
+	}
 
 
 	async setKnobs() {
@@ -1620,7 +1625,7 @@ export default class ViktorNV1HTMLElement extends HTMLElement {
 
 
 		// COMPRESSOR
-		this.root.getElementById('compressor-switch').addEventListener('change	', (e) => {
+		this.root.getElementById('compressor-switch').addEventListener('change', (e) => {
 			//console.log("On change le switch du compresseur + val = " + e.target.value);
 			this.setCompressorValues();
 		});
