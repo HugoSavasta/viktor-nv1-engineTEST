@@ -842,15 +842,15 @@ let template = `
 
 
 	<div class="modulation-wheel">
-		<webaudio-knob src="images/wheel.png" value="{{modulationWheel.modulation.value}}"
-			min="{{modulationWheel.modulation.range[ 0 ]}}" max="{{modulationWheel.modulation.range[ 1 ]}}"
+		<webaudio-knob src="images/wheel.png" value="{{modulationWheel.modulation.value}}" id="modulation-wheel"
+			min="0" max="128"
 			sprites="44" width="60" height="150">
 		</webaudio-knob>
 	</div>
 
 	<div class="pitch-bend">
-		<webaudio-knob src="images/wheel.png" value="{{pitch.bend.value}}"
-			min="{{pitch.bend.range[ 0 ]}}" max="{{pitch.bend.range[ 1 ]}}" step="1"
+		<webaudio-knob src="images/wheel.png" value="{{pitch.bend.value}}" id="pitch-bend-left"
+			min="0" max="128" step="1"
 			sprites="44" width="60" height="150">
 		</webaudio-knob>
 	</div>
@@ -1159,18 +1159,24 @@ export default class ViktorNV1HTMLElement extends HTMLElement {
 
 	getNoiseValuesFromUI() {
 		const synth = this.getSynth();
-		const noise = synth.noiseSettings;
+		const enabled = {
+			value: parseInt(this.root.getElementById('noise-switch').value),
+			range: [0, 1]
+		}
 
-		const enabled = noise.enabled;
 		const level = {
 			value: parseInt(this.root.getElementById('knob-noise-level').value),
 			range: [0, 100]
 		}
-		const type = parseInt(this.root.getElementById('knob-noise-type').value);
+		const type = {
+			value:parseInt(this.root.getElementById('knob-noise-type').value),
+			range: [0, 2]
+		}
+
 
 		return {
 			enabled,
-			level,
+			level :transposeParam(level, [0, 1]),
 			type
 		}
 	}
@@ -1180,8 +1186,9 @@ export default class ViktorNV1HTMLElement extends HTMLElement {
 		// get all knob values as an object
 		let uiSettings = this.getNoiseValuesFromUI();
 
+		
 		synth.noiseSettings = {
-			enabled: synth.noiseSettings.enabled,
+			enabled: uiSettings.enabled,
 			level: uiSettings.level,
 			type: uiSettings.type
 		};
@@ -1328,8 +1335,14 @@ export default class ViktorNV1HTMLElement extends HTMLElement {
 	}
 
 	getCompressorValuesFromUI() {
-		const synth = this.getSynth();
-		const compressor = synth.compressorSettings;
+		let dawEngine = this.getDawEngine();
+		const compressor = dawEngine.compressorSettings;
+
+		const switchValue = parseInt(this.root.getElementById('compressor-switch').value);
+		const enabled = {
+			value: switchValue,
+			range: [0, 1]	
+		}
 		const threshold = {
 			value: parseInt(this.root.getElementById('knob-compressor-threshold').value),
 			range: [-60, 0]
@@ -1356,6 +1369,7 @@ export default class ViktorNV1HTMLElement extends HTMLElement {
 		}
 
 		return {
+			enabled,
 			threshold,
 			ratio,
 			knee,
@@ -1366,11 +1380,12 @@ export default class ViktorNV1HTMLElement extends HTMLElement {
 	}
 
 	setCompressorValues() {
-		let synth = this.getSynth();
+		let dawEngine = this.getDawEngine();
 		// get all knob values as an object
 		let uiSettings = this.getCompressorValuesFromUI();
 
-		synth.compressorSettings = {
+		dawEngine.compressorSettings = {
+			enabled: uiSettings.enabled,
 			threshold: uiSettings.threshold,
 			ratio: uiSettings.ratio,
 
@@ -1380,12 +1395,13 @@ export default class ViktorNV1HTMLElement extends HTMLElement {
 			release: uiSettings.release,
 			makeupGain: uiSettings.makeupGain
 		};
+		console.dir(dawEngine.compressorSettings)
 	}
 
 
 	getReverbValuesFromUI() {
-		const synth = this.getSynth();
-		const reverb = synth.reverbSettings;
+		let dawEngine = this.getDawEngine();
+		const reverb = dawEngine.reverbSettings;
 		const level = {
 			value: parseInt(this.root.getElementById('knob-reverb-level').value),
 			range: [0, 100]
@@ -1397,18 +1413,18 @@ export default class ViktorNV1HTMLElement extends HTMLElement {
 	}
 
 	setReverbValues() {
-		let synth = this.getSynth();
+		let dawEngine = this.getDawEngine();
 		// get all knob values as an object
 		let uiSettings = this.getReverbValuesFromUI();
 
-		synth.reverbSettings = {
+		dawEngine.reverbSettings = {
 			level: uiSettings.level
 		};
 	}
 
 	getDelayValuesFromUI() {
-		const synth = this.getSynth();
-		const delay = synth.delaySettings;
+		let dawEngine = this.getDawEngine();
+		const delay = dawEngine.delaySettings;
 		const time = {
 			value: parseInt(this.root.getElementById('knob-delay-time').value),
 			range: [0, 100]
@@ -1435,11 +1451,11 @@ export default class ViktorNV1HTMLElement extends HTMLElement {
 	}
 
 	setDelayValues() {
-		let synth = this.getSynth();
+		let dawEngine = this.getDawEngine();
 		// get all knob values as an object
 		let uiSettings = this.getDelayValuesFromUI();
 
-		synth.delaySettings = {
+		dawEngine.delaySettings = {
 			time: uiSettings.time,
 			feedback: uiSettings.feedback,
 			dry: uiSettings.dry,
@@ -1534,7 +1550,7 @@ export default class ViktorNV1HTMLElement extends HTMLElement {
 			//console.log("On change le type de bruit + val = " + e.target.value);
 			this.setNoiseValues();
 		});
-		this.root.getElementById('noise-switch').addEventListener('input', (e) => {
+		this.root.getElementById('noise-switch').addEventListener('change', (e) => {
 			//console.log("On change le switch de bruit + val = " + e.target.value);
 			this.setNoiseValues();
 		});
@@ -1604,7 +1620,7 @@ export default class ViktorNV1HTMLElement extends HTMLElement {
 
 
 		// COMPRESSOR
-		this.root.getElementById('compressor-switch').addEventListener('input', (e) => {
+		this.root.getElementById('compressor-switch').addEventListener('change	', (e) => {
 			//console.log("On change le switch du compresseur + val = " + e.target.value);
 			this.setCompressorValues();
 		});
