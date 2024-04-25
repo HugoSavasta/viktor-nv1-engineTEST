@@ -1033,6 +1033,39 @@ export default class ViktorNV1HTMLElement extends HTMLElement {
 		};
 	}
 
+	/* getPolyphonyValuesFromUI() {
+		const synth = this.getSynth();
+		const voices = {
+			value: parseInt(this.root.getElementById('knob-polyphony-voices').value),
+			range: [1, 10]
+		}
+		let voicesAdjusted = transposeParam(voices, [1, 10]);
+
+		const substain = {
+			value: parseInt(this.root.getElementById('knob-polyphony-sustain').value),
+			range: [0, 100]
+		}
+
+		return {
+			voices: voicesAdjusted,
+			substain: transposeParam(substain, [0, 1])
+		}
+	}
+
+	setPolyphonyValues() {
+		const synth = this.getSynth();
+		let uiSettings = this.getPolyphonyValuesFromUI();
+
+		synth.polyphonySettings = {
+			voices: uiSettings.voices,
+			substain: uiSettings.substain
+		};
+
+		console.log("Polyphony settings");
+		console.dir(synth.polyphonySettings);
+	} */
+
+
 	getOscillatorValuesFromUI() {
 		const synth = this.getSynth();
 		// OSC1
@@ -1273,16 +1306,16 @@ export default class ViktorNV1HTMLElement extends HTMLElement {
 
 		return {
 			primary: {
-				attack: primaryAttack,
-				decay: primaryDecay,
-				sustain: primarySustain,
-				release: primaryRelease
+				attack: transposeParam(primaryAttack, [0, 2]),
+				decay: transposeParam(primaryDecay, [0, 2]),
+				sustain: transposeParam(primarySustain, [0.001, 1]),
+				release: transposeParam(primaryRelease, [0, 2])
 			},
 			filter: {
-				attack: filterAttack,
-				decay: filterDecay,
-				sustain: filterSustain,
-				release: filterRelease
+				attack: transposeParam(filterAttack, [0, 2]),
+				decay: transposeParam(filterDecay, [0.002, 2]),
+				sustain: transposeParam(filterSustain, [0, 1]),	
+				release: transposeParam(filterRelease, [0, 2])
 			}
 		}
 	}
@@ -1296,6 +1329,9 @@ export default class ViktorNV1HTMLElement extends HTMLElement {
 			primary: uiSettings.primary,
 			filter: uiSettings.filter
 		};
+
+		console.log("Envelope settings");
+		console.dir(synth.envelopes);
 	}
 
 
@@ -1501,8 +1537,8 @@ export default class ViktorNV1HTMLElement extends HTMLElement {
 			dry: uiSettings.dry,
 			wet: uiSettings.wet
 		};
-		console.log("Delay settings")
-		console.dir(dawEngine.delaySettings);
+		//console.log("Delay settings")
+		//console.dir(dawEngine.delaySettings);
 	}
 
 	getModulationWheelValuesFromUI() {
