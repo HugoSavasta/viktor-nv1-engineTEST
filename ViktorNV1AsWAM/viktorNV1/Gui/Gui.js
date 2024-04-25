@@ -686,19 +686,19 @@ let template = `
 		<div class="knob-with-label">
 			<h5 id="filter-cutoff-label">Cutoff</h5>
 			<webaudio-knob src="images/0-100-knob.png" id="knob-filter-cutoff"
-				value="0" min="0" max="500" step="1" diameter="120" sprites="44" width="60" height="60">
+				value="55" min="0" max="500" step="1" diameter="120" sprites="44" width="60" height="60">
 			</webaudio-knob>
 		</div>
 		<div class="knob-with-label">
 			<h5>Emphasis</h5>
 			<webaudio-knob src="images/0-100-knob.png" id="knob-filter-emphasis"
-				value="0" min="0" max="100" step="1" diameter="120" sprites="44" width="60" height="60">
+				value="41" min="0" max="100" step="1" diameter="120" sprites="44" width="60" height="60">
 			</webaudio-knob>
 		</div>
 		<div class="knob-with-label">
 			<h5>Simple/Env</h5>
 			<webaudio-knob src="images/0-100-knob.png" id="knob-filter-env-amount"
-				value="0" min="0" max="100" step="1" diameter="120" sprites="44" width="60" height="60">
+				value="48" min="0" max="100" step="1" diameter="120" sprites="44" width="60" height="60">
 			</webaudio-knob>
 		</div>
 		<h4>LP Filter</h4>
@@ -714,13 +714,13 @@ let template = `
 		<div class="knob-with-label">
 			<h5>Rate</h5>
 			<webaudio-knob src="images/0-100-knob.png"  id="knob-lfo-rate"
-				value="1" min="1" max="25" step="1" diameter="120" sprites="44" width="60" height="60">
+				value="3" min="1" max="25" step="1" diameter="120" sprites="44" width="60" height="60">
 			</webaudio-knob>
 		</div>
 		<div class="knob-with-label">
 			<h5>Clean/LFO</h5>
 			<webaudio-knob src="images/0-100-knob.png" id="knob-lfo-amount"
-				value="0" min="0" max="100" step="1" diameter="120" sprites="44" width="60" height="60">
+				value="46" min="0" max="100" step="1" diameter="120" sprites="44" width="60" height="60">
 			</webaudio-knob>
 		</div>
 		<h4>LFO</h4>
@@ -738,35 +738,35 @@ let template = `
 		<div class="row">
 			<div class="knob-with-label">
 				<webaudio-knob src="images/0-100-knob.png" id="knob-compressor-threshold"
-					value="-60" min="-60" max="0"
+					value="-19.5" min="-60" max="0"
 					step="0.5"
 					sprites="44" width="45" height="45"></webaudio-knob>
 				<h6>Threshold</h6>
 			</div>
 			<div class="knob-with-label">
 				<webaudio-knob src="images/0-100-knob.png" id="knob-compressor-ratio"
-					value="1" min="1" max="20"
+					value="3" min="1" max="20"
 					step="0.1"
 					sprites="44" width="45" height="45"></webaudio-knob>
 				<h6>Ratio</h6>
 			</div>
 			<div class="knob-with-label">
 				<webaudio-knob src="images/0-100-knob.png" id="knob-compressor-knee"
-					value="0" min="0" max="20"
+					value="2" min="0" max="20"
 					step="0.1"
 					sprites="44" width="45" height="45"></webaudio-knob>
 				<h6>Knee</h6>
 			</div>
 			<div class="knob-with-label">
 				<webaudio-knob src="images/0-100-knob.png" id="knob-compressor-attack"
-					value="0.0" min="0.0" max="1000.0"
+					value="0.1" min="0.0" max="1000.0"
 					step="0.1"
 					sprites="44" width="45" height="45"></webaudio-knob>
 				<h6>Attack</h6>
 			</div>
 			<div class="knob-with-label">
 				<webaudio-knob src="images/0-100-knob.png" id="knob-compressor-release"
-					value="0" min="0" max="1000"
+					value="20" min="0" max="1000"
 					step="1"
 					sprites="44" width="45" height="45"></webaudio-knob>
 				<h6>Release</h6>
@@ -810,21 +810,21 @@ let template = `
 		<div class="row">
 			<div class="knob-with-label">
 				<webaudio-knob src="images/0-100-knob.png" id="knob-delay-time"
-					value="0" min="0" max="100"
+					value="52" min="0" max="100"
 					step="1"
 					sprites="44" width="45" height="45"></webaudio-knob>
 				<h6>Time</h6>
 			</div>
 			<div class="knob-with-label">
 				<webaudio-knob src="images/0-100-knob.png" id="knob-delay-feedback"
-					value="0" min="0" max="100"
+					value="87" min="0" max="100"
 					step="1"
 					sprites="44" width="45" height="45"></webaudio-knob>
 				<h6>Feed</h6>
 			</div>
 			<div class="knob-with-label">
 				<webaudio-knob src="images/0-100-knob.png" id="knob-delay-dry"
-					value="0" min="0" max="100"
+					value="100" min="0" max="100"
 					step="1"
 					sprites="44" width="45" height="45"></webaudio-knob>
 				<h6>Dry</h6>
@@ -1041,9 +1041,13 @@ export default class ViktorNV1HTMLElement extends HTMLElement {
 			value: parseInt(this.root.getElementById('knob-osc1-range').value),
 			range: [1, 6]
 		}
-		let osc1RangeAdjusted = transposeParam(osc1Range, [-4, 2]);
+		let osc1RangeAdjusted =  transposeParam(osc1Range, [-4, 2]);
+		
 		// osc1 waveform
-		const osc1Waveform = parseInt(this.root.getElementById('knob-osc1-waveform').value);
+		const osc1Waveform = {
+			value:parseInt(this.root.getElementById('knob-osc1-waveform').value),
+			range: [0, 5]
+		}
 
 		// OSC2
 		// osc2 range
@@ -1054,7 +1058,10 @@ export default class ViktorNV1HTMLElement extends HTMLElement {
 		let osc2RangeAdjusted = transposeParam(osc2Range, [-4, 2]);
 
 		// osc2 waveform
-		const osc2Waveform = parseInt(this.root.getElementById('knob-osc2-waveform').value);
+		const osc2Waveform = {
+			value:parseInt(this.root.getElementById('knob-osc2-waveform').value),
+			range: [0, 5]
+		}
 		// osc2 fine detune
 		const osc2FineDetune = {
 			value: parseInt(this.root.getElementById('knob-osc2-fine-detune').value),
@@ -1068,8 +1075,18 @@ export default class ViktorNV1HTMLElement extends HTMLElement {
 			value: parseInt(this.root.getElementById('knob-osc3-range').value),
 			range: [0, 6]
 		}
+		let osc3RangeAdjusted = transposeParam(osc3Range, [-4, 2]);
 
-		let osc3RangeAdjusted = transposeParam(osc3Range, [-3, 3]);
+		const osc3FineDetune = {
+			value: parseInt(this.root.getElementById('knob-osc3-fine-detune').value),
+			range: [1, 1600]
+		}
+		let osc3FineDetuneRangeAdjusted = transposeParam(osc3FineDetune, [-800, 800]);
+		// osc2 waveform
+		const osc3Waveform = {
+			value:parseInt(this.root.getElementById('knob-osc3-waveform').value),
+			range: [0, 5]
+		}
 
 		return {
 			osc1: {
@@ -1077,16 +1094,15 @@ export default class ViktorNV1HTMLElement extends HTMLElement {
 				waveform: osc1Waveform
 			},
 			osc2: {
-				value: osc1RangeAdjusted,
+				value: osc2RangeAdjusted,
 				fineDetune: osc2FineDetuneRangeAdjusted,
-				waveform: osc1Waveform
+				waveform: osc2Waveform
 			},
 			osc3: {
 				value: osc3RangeAdjusted,
-				fineDetune: osc2FineDetuneRangeAdjusted,
-				waveform: osc1Waveform
+				fineDetune: osc3FineDetuneRangeAdjusted,
+				waveform: osc3Waveform
 			}
-
 		}
 	}
 
@@ -1112,32 +1128,49 @@ export default class ViktorNV1HTMLElement extends HTMLElement {
 				waveform: uiSettings.osc3.waveform
 			}
 		};
+
+		console.log("Oscillator settings");
+		console.dir(synth.oscillatorSettings);
 	}
 
 	getMixerValuesFromUI() {
 		const synth = this.getSynth();
 		const mixer = synth.mixerSettings;
+
 		const volume1 = {
-			enabled: mixer.volume1.enabled,
+			enabled: {
+				value: mixer.volume1.enabled,
+				range: [0, 1]
+			},
 			level: {
 				value: parseInt(this.root.getElementById('knob-mixer-volume-1').value),
 				range: [0, 100]
 			}
 		};
 		const volume2 = {
-			enabled: mixer.volume2.enabled,
+			enabled: {
+				value: mixer.volume2.enabled,
+				range: [0, 1]
+			},
 			level: {
 				value: parseInt(this.root.getElementById('knob-mixer-volume-2').value),
 				range: [0, 100]
 			}
 		};
 		const volume3 = {
-			enabled: mixer.volume3.enabled,
+			enabled: {
+				value: mixer.volume3.enabled,
+				range: [0, 1]
+			},
 			level: {
 				value: parseInt(this.root.getElementById('knob-mixer-volume-3').value),
 				range: [0, 100]
 			}
 		};
+
+		volume1.value = transposeParam(volume1.level, [0, 1]);
+		volume2.value = transposeParam(volume2.level, [0, 1]);
+		volume3.value = transposeParam(volume3.level, [0, 1]);
 
 		return {
 			volume1,
@@ -1151,11 +1184,13 @@ export default class ViktorNV1HTMLElement extends HTMLElement {
 		// get all knob values as an object
 		let uiSettings = this.getMixerValuesFromUI();
 
+
 		synth.mixerSettings = {
 			volume1: uiSettings.volume1,
 			volume2: uiSettings.volume2,
 			volume3: uiSettings.volume3
 		};
+		console.log("Mixer settings");
 		console.dir(synth.mixerSettings);
 	}
 
@@ -1281,9 +1316,9 @@ export default class ViktorNV1HTMLElement extends HTMLElement {
 		}
 
 		return {
-			cutoff,
-			emphasis,
-			envAmount
+			cutoff: transposeParam(cutoff, [0, 8000]),
+			emphasis : transposeParam(emphasis, [0.4, 40]),
+			envAmount : transposeParam(envAmount, [0, 1])
 		}
 	}
 
@@ -1297,6 +1332,9 @@ export default class ViktorNV1HTMLElement extends HTMLElement {
 			emphasis: uiSettings.emphasis,
 			envAmount: uiSettings.envAmount
 		};
+
+		console.log("Filter settings")
+		console.dir(synth.filterSettings);
 
 	}
 	
@@ -1319,8 +1357,8 @@ export default class ViktorNV1HTMLElement extends HTMLElement {
 
 		return {
 			waveform,
-			rate,
-			amount
+			rate: transposeParam(rate, [1, 25]),
+			amount: transposeParam(amount, [0, 1])
 		}
 	}
 
@@ -1410,7 +1448,7 @@ export default class ViktorNV1HTMLElement extends HTMLElement {
 		}
 
 		return {
-			level
+			level: transposeParam(level, [0, 1])
 		}
 	}
 
@@ -1445,10 +1483,10 @@ export default class ViktorNV1HTMLElement extends HTMLElement {
 		}
 
 		return {
-			time,
-			feedback,
-			dry,
-			wet
+			time : transposeParam(time, [0, 1000]), 
+			feedback: transposeParam(feedback, [0, 0.9]),
+			dry:transposeParam(dry, [0, 1]),
+			wet:transposeParam(wet, [0, 1]),
 		}
 	}
 
@@ -1463,6 +1501,8 @@ export default class ViktorNV1HTMLElement extends HTMLElement {
 			dry: uiSettings.dry,
 			wet: uiSettings.wet
 		};
+		console.log("Delay settings")
+		console.dir(dawEngine.delaySettings);
 	}
 
 	getModulationWheelValuesFromUI() {
@@ -1544,8 +1584,7 @@ export default class ViktorNV1HTMLElement extends HTMLElement {
 				};
 		});	
 
-		// Rangée du haut, oscillators
-		//osc1
+		// OSCILLATORS OK
 		this.root.getElementById('knob-osc1-range').addEventListener('input', (e) => {
 			this.setOscillatorValues();
 		});	
@@ -1581,7 +1620,7 @@ export default class ViktorNV1HTMLElement extends HTMLElement {
 			this.setOscillatorValues();
 		});
 
-		// MIXER
+		// MIXER OK
 		this.root.getElementById('knob-mixer-volume-1').addEventListener('input', (e) => {
 			//console.log("On change le volume du mixer 1 + val = " + e.target.value);
 			this.setMixerValues();
@@ -1595,7 +1634,7 @@ export default class ViktorNV1HTMLElement extends HTMLElement {
 			this.setMixerValues();
 		});
 
-		// NOISE
+		// NOISE OK
 		this.root.getElementById('knob-noise-level').addEventListener('input', (e) => {
 			//console.log("On change le niveau de bruit + val = " + e.target.value);
 			this.setNoiseValues();
@@ -1644,7 +1683,7 @@ export default class ViktorNV1HTMLElement extends HTMLElement {
 			this.setEnvelopeValues();
 		});
 
-		// FILTER
+		// FILTER OK
 		this.root.getElementById('knob-filter-cutoff').addEventListener('input', (e) => {
 			//console.log("On change la valeur du cutoff du filtre + val = " + e.target.value);
 			this.setFilterValues();
@@ -1658,7 +1697,7 @@ export default class ViktorNV1HTMLElement extends HTMLElement {
 			this.setFilterValues();
 		});
 
-		// LFO
+		// LFO OK
 		this.root.getElementById('knob-lfo-waveform').addEventListener('input', (e) => {
 			//console.log("On change la valeur de la waveform du LFO + val = " + e.target.value);
 			this.setLFOValues();
@@ -1673,7 +1712,7 @@ export default class ViktorNV1HTMLElement extends HTMLElement {
 		});
 
 
-		// COMPRESSOR
+		// COMPRESSOR OK
 		this.root.getElementById('compressor-switch').addEventListener('change', (e) => {
 			//console.log("On change le switch du compresseur + val = " + e.target.value);
 			this.setCompressorValues();
@@ -1703,13 +1742,13 @@ export default class ViktorNV1HTMLElement extends HTMLElement {
 			this.setCompressorValues();
 		});
 
-		// REVERB
+		// REVERB OK
 		this.root.getElementById('knob-reverb-level').addEventListener('input', (e) => {
 			//console.log("On change le level du reverb + val = " + e.target.value);
 			this.setReverbValues();
 		});
 
-		// DELAY
+		// DELAY OK
 		this.root.getElementById('knob-delay-time').addEventListener('input', (e) => {
 			//console.log("On change le time du delay + val = " + e.target.value);
 			this.setDelayValues();
