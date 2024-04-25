@@ -5,13 +5,13 @@ class Store {
     }
 
     // Get current user
-    get(user) {
-        return localStorage.getItem(user);
+    get(key) {
+        return localStorage.getItem(key);
     }
 
     // Remove current user
-    remove(user) {
-        localStorage.removeItem(user);
+    remove(key) {
+        localStorage.removeItem(key);
     }
 
     // Clear all keys
@@ -20,7 +20,12 @@ class Store {
     }
 
     // Loop over all stored values
-    each(callback) { }
+    each(callback) { 
+        for (let i = 0; i < localStorage.length; i++) {
+            let key = localStorage.key(i);
+            callback(key, this.get(key));
+        }
+    }
 }
 
 let store = new Store();
