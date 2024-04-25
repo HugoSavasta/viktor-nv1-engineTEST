@@ -205,6 +205,8 @@ DAW.prototype = {
 				if ( oldSettings.bend.value !== settings.bend.value ) {
 					self.instruments.forEach( function( instrument ) {
 						instrument.pitchSettings = settings;
+						console.log("Daw.js instrument.pitchSettings= ");
+						console.dir(instrument.pitchSettings);
 					} );
 				}
 

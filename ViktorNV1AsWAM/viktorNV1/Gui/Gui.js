@@ -965,10 +965,11 @@ export default class ViktorNV1HTMLElement extends HTMLElement {
 			select.appendChild(option);
 		}
 	
-		select.addEventListener("change", function () {
+		select.addEventListener("change", () => {
 			var selectedItem = patchLibrary.getPatch(select.value);
 	
 			dawEngine.loadPatch(selectedItem.patch);
+			this.updateUIFromPatchValue();
 		});
 	
 		this.root.querySelector('#viktorPresetMenu').append(select);
@@ -990,6 +991,27 @@ export default class ViktorNV1HTMLElement extends HTMLElement {
 	setResources() {
 	}
 
+	updateUIFromPatchValue() {
+		let dawEngine = this.plugin.dawEngine;
+		let synth = this.getSynth();
+		// set Master volume from internal settings
+		//this.root.getElementById('masterVolume').value = transposeParam(dawEngine.masterVolumeSettings.level, [0, 100]);
+
+		// OSCILLATORS
+		// OSC1 values
+		let osc1rangeValue = transposeParam(synth.oscillatorSettings.osc1.range, [1, 6]).value;
+		this.root.getElementById('knob-osc1-range').setValue(osc1rangeValue, false);
+
+		// set oscillator 2 detune knob from internal settings
+		const osc2DetuneValue = transposeParam(synth.oscillatorSettings.osc2.fineDetune, [0, 1600]).value;
+		const osc3DetuneValue = transposeParam(synth.oscillatorSettings.osc3.fineDetune, [0, 1600]).value;
+
+		this.root.getElementById('knob-osc2-fine-detune').setValue(osc2DetuneValue, false);
+		// set oscillator 3 detune knob from internal settings
+		this.root.getElementById('knob-osc3-fine-detune').setValue(osc3DetuneValue, false);
+
+	}
+
 	getSynth() {
 		return this.plugin.dawEngine.selectedInstrument;
 	}
@@ -999,8 +1021,14 @@ export default class ViktorNV1HTMLElement extends HTMLElement {
 	}
 
 	getModulationValuesFromUI() {
+		const dawEngine = this.getDawEngine();
 		const synth = this.getSynth();
-		const waveform = parseInt(this.root.getElementById('knob-modulation-waveform').value);
+
+		const waveform = {
+			value: parseInt(this.root.getElementById('knob-modulation-waveform').value),
+			range: [0, 5]
+		};
+
 		const portamento = {
 			value: this.root.getElementById('knob-modulation-glide').value,
 			range: [0, 100]
@@ -1013,7 +1041,7 @@ export default class ViktorNV1HTMLElement extends HTMLElement {
 		return {
 			waveform,
 			portamento: portamentoInNewRange,
-			rate
+			rate: transposeParam(rate, [0, 15])
 		}
 	}
 
@@ -1029,8 +1057,10 @@ export default class ViktorNV1HTMLElement extends HTMLElement {
 			waveform: uiSettings.waveform,
 			portamento: uiSettings.portamento,
 			// rate is changed using the modulation wheel.
-			rate: synth.modulationSettings.rate
+			rate: uiSettings.rate
 		};
+		console.log("Modulation settings");
+		console.dir(synth.modulationSettings);
 	}
 
 	/* getPolyphonyValuesFromUI() {
@@ -1543,24 +1573,32 @@ export default class ViktorNV1HTMLElement extends HTMLElement {
 
 	getModulationWheelValuesFromUI() {
 		let dawEngine = this.getDawEngine();
-		const modulationWheel = dawEngine.modulationWheel;
-		const modulation = {
+		const modulationSettings = dawEngine.modulationSettings;
+
+		const rate = {
 			value: parseInt(this.root.getElementById('modulation-wheel').value),
 			range: [0, 128]
 		}
 
 		return {
-			modulation : transposeParam(modulation, [0, 15]) // voir buffa pk marche pas
+			rate : transposeParam(rate, [0, 15]) // voir buffa pk marche pas
 		}
 	}
 
+	/*
+				var modulationSettings = dawEngine.modulationSettings;
+
+				modulationSettings.rate = settingsConvertor.transposeParam( self.modulation, settings.rate.range );
+
+				dawEngine.modulationSettings = modulationSettings;
+	*/
 	setModulationWheelValues() {
 		let dawEngine = this.getDawEngine();
 		// get all knob values as an object
 		let uiSettings = this.getModulationWheelValuesFromUI();
 
-		dawEngine.modulationWheel = {
-			modulation: uiSettings.modulation
+		dawEngine.modulationSettings = {
+			rate: uiSettings.rate
 		};
 
 		//console.dir(dawEngine.modulationWheel);
@@ -1569,7 +1607,7 @@ export default class ViktorNV1HTMLElement extends HTMLElement {
 
 	getPitchBendValuesFromUI() {
 		let dawEngine = this.getDawEngine();
-		const pitch = dawEngine.pitchBend;
+
 		const bend = {
 			value: parseInt(this.root.getElementById('pitch-bend-left').value),
 			range: [0, 128]
@@ -1585,11 +1623,11 @@ export default class ViktorNV1HTMLElement extends HTMLElement {
 		// get all knob values as an object
 		let uiSettings = this.getPitchBendValuesFromUI();
 
-		dawEngine.pitchBend = {
+		dawEngine.pitchSettings = {
 			bend: uiSettings.bend
 		};
-
-		//console.dir(dawEngine.pitchBend);
+		console.log("Pitch bend settings")
+		console.dir(dawEngine.pitchSettings);
 
 	}
 
@@ -1604,19 +1642,24 @@ export default class ViktorNV1HTMLElement extends HTMLElement {
 			this.setModulationValues();
 		});	
 		
+		// MODULATION top left column
 		this.root.getElementById('knob-modulation-glide').addEventListener('input', (e) => {
 			//console.log("On change la vzaleur glide/portamento + val = " + e.target.value);
 			this.setModulationValues();
 		});	
 		
+		// POLYPHONY OK
 		this.root.getElementById('knob-polyphony-voices').addEventListener('input', (e) => {
 			//console.log("On change le nombre max de voix de polyphonie = " + e.target.value);
 
 			const synth = this.getSynth();
 			const settings = synth.polyphonySettings;
 				synth.polyphonySettings = {
-					voiceCount: parseInt(e.target.value),
-					sustain: settings.sustain
+					voiceCount: {
+						value: parseInt(e.target.value),
+						range: [1, 10]
+					},
+					sustain:transposeParam(settings.sustain, [0, 1])
 				};
 		});	
 
