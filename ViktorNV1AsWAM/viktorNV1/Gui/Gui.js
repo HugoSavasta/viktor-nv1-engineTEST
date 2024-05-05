@@ -842,14 +842,14 @@ let template = `
 
 
 	<div class="modulation-wheel">
-		<webaudio-knob src="images/wheel.png" value="{{modulationWheel.modulation.value}}" id="modulation-wheel"
+		<webaudio-knob src="images/wheel.png" value="50" id="modulation-wheel"
 			min="0" max="128"
 			sprites="44" width="60" height="150">
 		</webaudio-knob>
 	</div>
 
 	<div class="pitch-bend">
-		<webaudio-knob src="images/wheel.png" value="{{pitch.bend.value}}" id="pitch-bend-left"
+		<webaudio-knob src="images/wheel.png" value="50" id="pitch-bend-left"
 			min="0" max="128" step="1"
 			sprites="44" width="60" height="150">
 		</webaudio-knob>
@@ -1567,8 +1567,6 @@ export default class ViktorNV1HTMLElement extends HTMLElement {
 			dry: uiSettings.dry,
 			wet: uiSettings.wet
 		};
-		//console.log("Delay settings")
-		//console.dir(dawEngine.delaySettings);
 	}
 
 	getModulationWheelValuesFromUI() {
