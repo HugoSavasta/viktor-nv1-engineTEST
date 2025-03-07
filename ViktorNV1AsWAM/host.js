@@ -43,6 +43,18 @@ const mountPlugin = (domNode) => {
 	viktorInstance.audioNode.connect(audioContext.destination);
 	// connect keyboard to the synth so that synth listens to MIDI events
     keyboardInstance.audioNode.connectEvents(viktorInstance.instanceId);
+
+	document.querySelector("#btnParameters").addEventListener("click", async () => {
+		const params = await viktorInstance.audioNode.getParameterInfo();
+		console.log(params);
+		console.log("Changing modulation waveform to : " + 5);
+		await viktorInstance.audioNode.setParameterValues( {
+			modulationWaveform:{
+				id: "modulationWaveform",
+				value: 5
+			}
+		});
+	})
 	
 	async function loadWam(wamUri) {
 		const { default: WAM } = await import(wamUri);

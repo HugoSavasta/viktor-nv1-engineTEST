@@ -72,6 +72,29 @@ export default class ViktorNV1Plugin extends WebAudioModule {
 				maxValue: 5,
 				onChange: (value) => { this.dawEngine.masterVolume.gain.value = value; },
 			},
+			modulationWaveform: {
+				defaultValue: 3,
+				minValue: 0,
+				maxValue: 5,
+				onChange: (value) => { 
+					console.log('modulationWaveform ON CHANGE value = ', value);
+					const synth = viktorSynthNode.synth.selectedInstrument;
+					const portamento = synth.modulationSettings.portamento;
+					const rate = synth.modulationSettings.rate;
+					const waveform = synth.modulationSettings.waveform;
+					waveform.value = value;
+					synth.modulationSettings = {
+						waveform,
+						rate,
+						portamento
+					};
+					this.dawEngine.modulationSettings = {
+						waveform,
+						rate,
+						portamento
+					};
+				},
+			},
 			enabled: {
 				defaultValue: 1,
 				minValue: 0,
